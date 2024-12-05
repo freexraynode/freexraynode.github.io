@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freexraynode.github.io/news/article-21272.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>vue项目如何刷新当前页面</title>
+        <meta name="description" content="想必大家在刨坑vue的时候也遇到过下面情形：比如在删除或者增加一条记录的时候希望当前页面可以重新刷新或者如下面这种：  如果希望点击确定的时候，Dialog 对话框关闭的时候，当前http://loc" />
+        <link rel="icon" href="__ADDON__/img/freexraynode/favicon.ico" type="image/x-icon"/>
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="/assets/website/css/freexraynode/style-starter.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-768TFY4KSC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-768TFY4KSC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>Free Xray Node</span>
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h1 class="inner-text-title font-weight-bold mb-sm-3 mb-2">vue项目如何刷新当前页面</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- middle section -->
+    <section class="w3l-servicesblock py-md-5 py-4">
+        <div class="container pb-2">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="htmledit_views"> <p>想必大家在刨坑vue的时候也遇到过下面情形：比如在删除或者增加一条记录的时候希望当前页面可以重新刷新或者如下面这种：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221207/312e3981df13f27c132b0a6f04de0580.jpg" alt="vue项目如何刷新当前页面"></p> <p>如果希望点击确定的时候，<span style="font-family:'Microsoft YaHei';font-size:14px;color:rgb(31,47,61);">Dialog 对话框关闭的时候，当前http://localhost:9530/#/supplier/supplierAll页面可以重新刷新下</span></p> <p><span style="font-family:'Microsoft YaHei';font-size:14px;color:rgb(31,47,61);">那么表格的数据可以重新加载，<span style="color:rgb(31,47,61);font-family:'Microsoft YaHei';font-size:14px;">Dialog 对话框设置的数据可以在确定后刷新出现在页面上</span></span></p> <p>这时候我们最直接的思维就是想到下面这种：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221207/5d92c40058c415c62e12aa8b3c73fa21.jpg" alt="vue项目如何刷新当前页面"></p> <p>但是，试过的会发现<strong><span style="color:rgb(0,0,0);font-family:Verdana, Arial, Helvetica, sans-serif;font-size:13px;text-align:left;background-color:rgb(254,254,242);">用vue-router重新路由到当前页面，页面是不进行刷新的</span>，</strong>根本没有任何作用~所以这个方法out！</p> <p>下面我这边整理几种可圈可点的三种方式，大家可以自行的选择：</p> <p>1、最直接整个页面重新刷新：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221207/8ea952504d72789b185271cf5ca07674.jpg" alt="vue项目如何刷新当前页面"></p> <div style="color:rgb(212,212,212);background-color:rgb(30,30,30);font-family:Consolas, 'Courier New', monospace;font-size:14px;line-height:19px;white-space:pre;">  <span style="color:#9cdcfe;">location</span>.<br />  <span style="color:#dcdcaa;">reload</span>() </div> <div style="color:rgb(212,212,212);background-color:rgb(30,30,30);font-family:Consolas, 'Courier New', monospace;font-size:14px;line-height:19px;white-space:pre;">  <span style="color:#569cd6;">this</span>.<br />  <span style="color:#9cdcfe;">$router</span>.<br />  <span style="color:#dcdcaa;">go</span>(<br />  <span style="color:#b5cea8;">0</span>) </div> <p>这两种都可以刷新当前页面的，缺点就是相当于按ctrl+F5 强制刷新那种，整个页面重新加载，会出现一个瞬间的空白页面，体验不好</p> <p>2、新建一个空白页面supplierAllBack.vue，点击确定的时候先跳转到这个空白页，然后再立马跳转回来</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221207/f64deb62df5f5c578886f43daab701e5.jpg" alt="vue项目如何刷新当前页面"></p> <p>空白页supplierAllBack.vue里面的内容：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221207/8fa0ccebac02f6eb8160d8993995ce52.jpg" alt="vue项目如何刷新当前页面"></p> <p>这个方式，相比第一种不会出现一瞬间的空白页，只是地址栏有个快速的切换的过程，可采用</p> <p>3、<span style="color:rgb(0,0,0);text-align:left;background-color:rgb(254,254,242);"><span style="font-family:'Microsoft YaHei';font-size:14px;">provide / inject&nbsp;组合 方式是我试过最实用的，下面用项目截图给大家说明下：</span></span><span style="font-family:'Microsoft YaHei';font-size:14px;background-color:rgb(254,254,242);color:rgb(0,0,0);text-align:left;">首先，要修改下你的app.vue</span></p> <p><span style="font-family:'Microsoft YaHei';font-size:14px;background-color:rgb(254,254,242);color:rgb(0,0,0);text-align:left;"><img decoding="async" src="http://img.555519.xyz/uploads/20221207/bc8d268dd4f8aa382f417bcf22102aee.jpg" alt="vue项目如何刷新当前页面"><br /></span></p> <p><span style="color:rgb(0,0,0);text-align:left;background-color:rgb(254,254,242);"><span style="font-family:'Microsoft YaHei';font-size:14px;"><span style="color:rgb(0,0,0);font-family:Verdana, Arial, Helvetica, sans-serif;font-size:13px;text-align:left;background-color:rgb(254,254,242);">通过声明reload方法，控制router-view的显示或隐藏，从而控制页面的再次加载，这边定义了</span></span></span></p> <div style="color:rgb(212,212,212);background-color:rgb(30,30,30);font-family:Consolas, 'Courier New', monospace;font-size:14px;line-height:19px;white-space:pre;">  <span style="color:#9cdcfe;">isRouterAlive //true or false 来控制</span> </div> <p><span style="color:rgb(0,0,0);text-align:left;background-color:rgb(254,254,242);"><span style="font-family:'Microsoft YaHei';font-size:14px;">然后在需要当前页面刷新的页面中<span style="color:rgb(0,0,0);font-family:Verdana, Arial, Helvetica, sans-serif;font-size:13px;text-align:left;background-color:rgb(254,254,242);">注入App.vue组件提供（provide）的 reload 依赖，然后直接用this.reload来调用就行</span></span></span></p> <p><span style="color:rgb(0,0,0);text-align:left;background-color:rgb(254,254,242);"><span style="font-family:'Microsoft YaHei';font-size:14px;"><span style="color:rgb(0,0,0);font-family:Verdana, Arial, Helvetica, sans-serif;font-size:13px;text-align:left;background-color:rgb(254,254,242);"><img decoding="async" src="http://img.555519.xyz/uploads/20221207/378322545f4900a8854e870ced7e1a69.jpg" alt="vue项目如何刷新当前页面"><br /></span></span></span></p> <p><span style="color:rgb(0,0,0);text-align:left;background-color:rgb(254,254,242);"><span style="font-family:'Microsoft YaHei';font-size:14px;"><span style="color:rgb(0,0,0);font-family:Verdana, Arial, Helvetica, sans-serif;text-align:left;background-color:rgb(254,254,242);">至此，三种方式都介绍完了，如果对你有帮助记得给个赞哈~</span></span></span></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-20812.htm">我的位置最近的仓鼠专卖店（仓鼠店地址）</a></p>
+                                        <p>下一个：<a href="/news/article-21273.htm">聊城宠物用品生产基地（山东聊城宠物产业基地）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-17-node-share-links.htm" title="「9月17日」最高速度20.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月17日」最高速度20.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-node-subscribe.htm" title="「11月4日」最高速度18.9M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月4日」最高速度18.9M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19897.htm" title="猫频繁吃鸡胸肉的危害（鸡胸肉喂猫的正确方法）">猫频繁吃鸡胸肉的危害（鸡胸肉喂猫的正确方法）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-18-free-node-subscribe.htm" title="「9月18日」最高速度21.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月18日」最高速度21.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-node-share.htm" title="「11月27日」最高速度19.9M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月27日」最高速度19.9M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-21-node-share-links.htm" title="「8月21日」最高速度22.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「8月21日」最高速度22.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-25-winxray-github.htm" title="「9月25日」最高速度21.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月25日」最高速度21.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-6-free-high-speed-nodes.htm" title="「10月6日」最高速度18.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月6日」最高速度18.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-5-free-high-speed-nodes.htm" title="「10月5日」最高速度19.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月5日」最高速度19.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-20355.htm" title="泰安泰宠宠物食品有限公司 电话 泰安泰宠宠物食品有限公司电话地址">泰安泰宠宠物食品有限公司 电话 泰安泰宠宠物食品有限公司电话地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //middle section -->
+        <!-- footer -->
+    <footer class="w3l-footer-22 position-relative mt-5 pt-5">
+        <!-- copyright -->
+        <div class="copyright-footer text-center">
+            <div class="container">
+                <div class="columns">
+                    <p>Free Xray Node机场节点官网 版权所有 Powered by WordPress</p>
+                </div>
+            </div>
+        </div>
+        <!-- //copyright -->
+    </footer>
+    <!-- //footer -->
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- //move top -->
+    <!-- common jquery plugin -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery-3.5.1.min.js"></script>
+    <!-- //common jquery plugin -->
+    <!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/freexraynode/theme-change.js"></script>
+    <script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function() {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- magnific popup -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- //magnific popup -->
+    <!-- MENU-JS -->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- for testimonials carousel -->
+    <script src="/assets/website/js/frontend/freexraynode/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#owl-demo1").owlCarousel({
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: true,
+                    loop: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //for testimonials carousel -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="/assets/website/js/frontend/freexraynode/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+    <!-- //Js scripts -->
+</body>
+
+</html>
