@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freexraynode.github.io/news/article-22641.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>java多线程之自定义消息队列</title>
+        <meta name="description" content="说明  这里将自己定义实现一个消息队列，该消息队列可以手动配置队列容量，可以供生产者生产消息，可以供消费者消费消息。  1、自定义消息队列 消息类 @DatapublicclassMessage{//" />
+        <link rel="icon" href="__ADDON__/img/freexraynode/favicon.ico" type="image/x-icon"/>
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="/assets/website/css/freexraynode/style-starter.css">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-768TFY4KSC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-768TFY4KSC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>Free Xray Node</span>
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h1 class="inner-text-title font-weight-bold mb-sm-3 mb-2">java多线程之自定义消息队列</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- middle section -->
+    <section class="w3l-servicesblock py-md-5 py-4">
+        <div class="container pb-2">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="markdown_views prism-dracula"> <h4><a id="_0" rel="nofollow"></a>说明</h4> <blockquote> <p>这里将自己定义实现一个消息队列，该消息队列可以手动配置队列容量，可以供生产者生产消息，可以供消费者消费消息。</p> </blockquote> <h4><a id="1_4" rel="nofollow"></a>1、自定义消息队列</h4> <p><strong>消息类</strong></p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Data</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">Message</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 消息ID</span><span class="token keyword">private</span><span class="token keyword">final</span><span class="token keyword">int</span> id<span class="token punctuation">;</span><span class="token comment">// 消息内容</span><span class="token keyword">private</span><span class="token keyword">final</span><span class="token class-name">Object</span> message<span class="token punctuation">;</span><span class="token keyword">public</span><span class="token class-name">Message</span><span class="token punctuation">(</span><span class="token keyword">final</span><span class="token keyword">int</span> id<span class="token punctuation">,</span><span class="token keyword">final</span><span class="token class-name">Object</span> message<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token operator">=</span> id<span class="token punctuation">;</span><span class="token keyword">this</span><span class="token punctuation">.</span>message<span class="token operator">=</span> message<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p><strong>消息队列类</strong></p> <blockquote> <p>根据面向对象的思想，消息队列需要提供put消息和take消息的方法。</p> </blockquote> <pre><code class="prism language-java"><span class="token annotation punctuation">@Slf4j</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">MessageQuene</span><span class="token punctuation">{<!-- --></span><span class="token comment">/**      * 双向队列      */</span><span class="token keyword">private</span><span class="token keyword">final</span><span class="token class-name">LinkedList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Message</span><span class="token punctuation">&gt;</span></span> queue<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">LinkedList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">/**      * 消息队列的容量，默认容量110      */</span><span class="token keyword">private</span><span class="token keyword">int</span> capacity<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span><span class="token keyword">public</span><span class="token class-name">MessageQuene</span><span class="token punctuation">(</span><span class="token keyword">final</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>capacity<span class="token operator">=</span> capacity<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">/**      * 向消息队列put消息      */</span><span class="token keyword">public</span><span class="token keyword">void</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">final</span><span class="token class-name">Message</span> message<span class="token punctuation">)</span><span class="token keyword">throws</span><span class="token class-name">InterruptedException</span><span class="token punctuation">{<!-- --></span><span class="token keyword">synchronized</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 超出容量，则在这里等待消费者取走消息</span><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&gt;=</span><span class="token keyword">this</span><span class="token punctuation">.</span>capacity<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>                 log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"消息队列已满，等待消费者消费消息....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">// 从尾部加，从头部取</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">addLast</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">notifyAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token comment">/**      * 从消息队列获取消息      */</span><span class="token keyword">public</span><span class="token class-name">Message</span><span class="token function">take</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">throws</span><span class="token class-name">InterruptedException</span><span class="token punctuation">{<!-- --></span><span class="token keyword">synchronized</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>                 log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"消息队列已空，等待生产者生产消息....."</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 这里将中断异常抛出</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">// 从尾部加，从头部取，取出后就从队列删除</span><span class="token keyword">final</span><span class="token class-name">Message</span> message<span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">pollFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">this</span><span class="token punctuation">.</span>queue<span class="token punctuation">.</span><span class="token function">notifyAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> message<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h4><a id="2_80" rel="nofollow"></a>2、自定义消息队列测试</h4> <pre><code class="prism language-java"><span class="token annotation punctuation">@Slf4j</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">MessageQueneTest</span><span class="token punctuation">{<!-- --></span><span class="token keyword">static</span><span class="token keyword">final</span><span class="token class-name">MessageQuene</span> messageQuene<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">MessageQuene</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">public</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">final</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 消费者不断从队列中消费消息</span><span class="token keyword">final</span><span class="token class-name">Thread</span> t1<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token class-name">MessageQueneTest</span><span class="token operator">::</span><span class="token function">consumeMessage</span><span class="token punctuation">,</span><span class="token string">"t1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">final</span><span class="token class-name">Thread</span> t2<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token class-name">MessageQueneTest</span><span class="token operator">::</span><span class="token function">consumeMessage</span><span class="token punctuation">,</span><span class="token string">"t2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 生产者，不断向队列中生产消息</span><span class="token keyword">final</span><span class="token class-name">Thread</span> t3<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token class-name">MessageQueneTest</span><span class="token operator">::</span><span class="token function">putMessage</span><span class="token punctuation">,</span><span class="token string">"t3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          t1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         t2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         t3<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">public</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">consumeMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">try</span><span class="token punctuation">{<!-- --></span><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">final</span><span class="token class-name">Message</span> message<span class="token operator">=</span> messageQuene<span class="token punctuation">.</span><span class="token function">take</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"消费者消费到消息，id = {}，message = {}"</span><span class="token punctuation">,</span> message<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> message<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token keyword">final</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">public</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">putMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">try</span><span class="token punctuation">{<!-- --></span><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">final</span><span class="token class-name">String</span> message<span class="token operator">=</span> UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">final</span><span class="token keyword">int</span> id<span class="token operator">=</span><span class="token class-name">RandomUtils</span><span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"生产者生产消息，id = {}，message = {}"</span><span class="token punctuation">,</span> id<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>                 messageQuene<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">new</span><span class="token class-name">Message</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token keyword">final</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>             e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p><strong>测试结果</strong></p> <pre><code class="prism language-xml">11:27:58.787 [t1] INFO com.wp.juc.hm.test.MessageQuene - 消息队列已空，等待生产者生产消息..... 11:27:58.794 [t2] INFO com.wp.juc.hm.test.MessageQuene - 消息队列已空，等待生产者生产消息..... 11:27:58.802 [t3] INFO com.wp.juc.hm.test.MessageQueneTest - 生产者生产消息，id = 872383243，message = 0b06d297-a59a-4a47-9f78-ddd36eb332fc 11:27:58.805 [t1] INFO com.wp.juc.hm.test.MessageQuene - 消息队列已空，等待生产者生产消息..... 11:27:58.805 [t2] INFO com.wp.juc.hm.test.MessageQueneTest - 消费者消费到消息，id = 872383243，message = 0b06d297-a59a-4a47-9f78-ddd36eb332fc 11:27:58.805 [t2] INFO com.wp.juc.hm.test.MessageQuene - 消息队列已空，等待生产者生产消息..... 11:27:59.809 [t3] INFO com.wp.juc.hm.test.MessageQueneTest - 生产者生产消息，id = 773935934，message = 0fe599b8-bf43-41e7-9158-96a6d12b8a25</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-22190.htm">动物疫苗品牌顿宝 动物疫苗前十强</a></p>
+                                        <p>下一个：<a href="/news/article-22643.htm">动物医院有公立的吗知乎推荐（动物医院有限公司）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-8-25-winxray-github.htm" title="「8月25日」最高速度18.3M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「8月25日」最高速度18.3M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-winxray-node-share.htm" title="「11月29日」最高速度18.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月29日」最高速度18.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-28-winxray-node-github.htm" title="「8月28日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「8月28日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-winxray-node.htm" title="「11月2日」最高速度21.1M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月2日」最高速度21.1M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-29-free-subscribe-node.htm" title="「9月29日」最高速度18.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月29日」最高速度18.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19897.htm" title="猫频繁吃鸡胸肉的危害（鸡胸肉喂猫的正确方法）">猫频繁吃鸡胸肉的危害（鸡胸肉喂猫的正确方法）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-26-free-node-subscribe-links.htm" title="「8月26日」最高速度22.2M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「8月26日」最高速度22.2M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-node-subscribe.htm" title="「10月17日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月17日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-node-subscribe.htm" title="「11月4日」最高速度18.9M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月4日」最高速度18.9M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-4-winxray-node-share.htm" title="「9月4日」最高速度21M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月4日」最高速度21M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //middle section -->
+        <!-- footer -->
+    <footer class="w3l-footer-22 position-relative mt-5 pt-5">
+        <!-- copyright -->
+        <div class="copyright-footer text-center">
+            <div class="container">
+                <div class="columns">
+                    <p>Free Xray Node机场节点官网 版权所有 Powered by WordPress</p>
+                </div>
+            </div>
+        </div>
+        <!-- //copyright -->
+    </footer>
+    <!-- //footer -->
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- //move top -->
+    <!-- common jquery plugin -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery-3.5.1.min.js"></script>
+    <!-- //common jquery plugin -->
+    <!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/freexraynode/theme-change.js"></script>
+    <script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function() {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- magnific popup -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- //magnific popup -->
+    <!-- MENU-JS -->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- for testimonials carousel -->
+    <script src="/assets/website/js/frontend/freexraynode/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#owl-demo1").owlCarousel({
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: true,
+                    loop: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //for testimonials carousel -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="/assets/website/js/frontend/freexraynode/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+    <!-- //Js scripts -->
+</body>
+
+</html>
