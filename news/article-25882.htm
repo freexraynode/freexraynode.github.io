@@ -103,6 +103,7 @@
                                       				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>kdc-kerberos 票据缓存在默认的/tmp/krb5cc_*这个文件，会导致个严重的问题：</p> <ul> <li>linux系统会定期删除/tmp，这回导致偶发性的票据验证失败问题；</li> <li>多用户并发执行任务的时候，票据会碰撞导致意外结果： <ul> <li>shell: 设置环境变量 <ul> <li>export KRB5CCNAME=/home/keytab/krb5cc</li> </ul> </li> <li>python：改变缓存票据的存放路径</li> </ul> </li> </ul> <pre><code>#!/usr/bin/env python # -*- coding:utf-8 -*- # 作者： tianjun # 时间： 2020/3/9 下午7:18 # 文件： test_deom.py # IDE： PyCharm from impala.dbapi import connect from krbcontext import krbcontext   if __name__ == '__main__':     hostname = '197.255.20.213'     port = 21050      with krbcontext(using_keytab=True, principal='impala@YJP.COM',                     keytab_file='/home/keytab/impala.keytab',                     ccache_file='krb5cc_0'):         conn = connect(host=hostname, port=port, auth_mechanism='GSSAPI', kerberos_service_name='impala')         cur = conn.cursor()         cur.execute("show databases")         for row in cur:             print(row[0])          conn2 = connect(host=hostname, port=port, auth_mechanism='GSSAPI', kerberos_service_name='impala')         cur2 = conn.cursor()         cur2.execute("select count(*) from yjp_trace.yjp_ods_trace")         print(cur2.fetchall()) </code></pre> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-25881.htm">@NotNull注解失效原因之一</a></p>
+                                        <p>下一个：<a href="/news/article-26325.htm">动物医院地址查询 动物医院地址查询官网</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -112,16 +113,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-29-winxray-github.htm" title="「10月29日」最高速度19.1M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月29日」最高速度19.1M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-winxray-github.htm" title="「11月19日」最高速度19.1M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月19日」最高速度19.1M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-winxray-windows.htm" title="「12月3日」最高速度22.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「12月3日」最高速度22.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-7-winxray-node-share.htm" title="「10月7日」最高速度20.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月7日」最高速度20.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-24027.htm" title="想开个宠物店（想开个宠物店怎么申请）">想开个宠物店（想开个宠物店怎么申请）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-19-free-node-subscribe-links.htm" title="「10月19日」最高速度21M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月19日」最高速度21M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-6-node-share-links.htm" title="「9月6日」最高速度18.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月6日」最高速度18.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-20355.htm" title="泰安泰宠宠物食品有限公司 电话 泰安泰宠宠物食品有限公司电话地址">泰安泰宠宠物食品有限公司 电话 泰安泰宠宠物食品有限公司电话地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-21-winxray-github.htm" title="「9月21日」最高速度22.9M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月21日」最高速度22.9M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-16-today-winxray-node.htm" title="「10月16日」最高速度19.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月16日」最高速度19.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-3-winxray-node-github.htm" title="「9月3日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月3日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-18986.htm" title="动物医院的设备叫什么 动物医院的设备叫什么名字">动物医院的设备叫什么 动物医院的设备叫什么名字</a></li>
+                        <li class="py-2"><a href="/news/article-26801.htm" title="Spring（六）&#8212;-Spring AOP概述及底层实现原理">Spring（六）&#8212;-Spring AOP概述及底层实现原理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-node-share-links.htm" title="「11月15日」最高速度20.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月15日」最高速度20.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-27-free-subscribe-node.htm" title="「10月27日」最高速度18M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月27日」最高速度18M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26803.htm" title="Go_error处理及panic、recover使用的正确姿势">Go_error处理及panic、recover使用的正确姿势</a></li>
+                        <li class="py-2"><a href="/news/article-23577.htm" title="猫咪驱虫顺序及注意事项（猫咪驱虫顺序及注意事项视频）">猫咪驱虫顺序及注意事项（猫咪驱虫顺序及注意事项视频）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-28-free-node-subscribe.htm" title="「9月28日」最高速度20.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月28日」最高速度20.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-winxray-node-share.htm" title="「10月10日」最高速度20M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月10日」最高速度20M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-9-free-subscribe-node.htm" title="「9月9日」最高速度22M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月9日」最高速度22M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -133,7 +134,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
