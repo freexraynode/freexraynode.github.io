@@ -14,8 +14,7 @@
     <!-- //google-fonts -->
     <!-- Template CSS Style link -->
     <link rel="stylesheet" href="/assets/website/css/freexraynode/style-starter.css">
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-768TFY4KSC"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -100,7 +99,7 @@
         <div class="container pb-2">
             <div class="row">
                 <div class="col-md-9">
-                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                                    <input type="hidden" id="share-website-info" data-name="XRayNode每日订阅站" data-url="https://xraynode.github.io">
                   				  				  				<div id="content_views" class="htmledit_views"> <p><span style="font-size:28px;font-weight:bold;">AOP的概述</span></p> <p>1. 什么是AOP的技术？<br /> <br />在软件业，AOP为Aspect Oriented Programming的缩写，意为：面向切面编程<br /> <br />AOP是一种编程范式，隶属于软工范畴，指导开发者如何组织程序结构<br /> <br />AOP最早由AOP联盟的组织提出的,制定了一套规范。Spring将AOP思想引入到框架中，必须遵守AOP联盟的规范<br /> <br />通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术<br /> <br />AOP是OOP的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型<br /> <br />利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率<br /> <br />2. AOP：面向切面编程(思想---解决OOP遇到一些问题)<br /> <br />3. AOP采取横向抽取机制，取代了传统纵向继承体系重复性代码（性能监视、事务管理、安全检查、缓存）<br /> <br />4. 为什么要学习AOP<br /> <br />可以在不修改源代码的前提下，对程序进行增强！！<br /> </p> </h1> <p>Srping框架的AOP技术底层也是采用的代理技术，代理的方式提供了两种<br /> <br />1. 基于JDK的动态代理<br /> <br />必须是面向接口的，只有实现了具体接口的类才能生成代理对象。<br /> <span style="color:#ff0000;">在运行期生成代理对象</span>。<br /> <br />2. 基于CGLIB动态代理<br /> <br />对于没有实现了接口的类，也可以产生代理，产生这个类的子类的方式。有可能在<br /> <span style="color:#ff0000;">编译时</span>就生成代理类了，也有可能在<br /> <span style="color:#ff0000;">类加载的时候</span>生成代理对象。不管怎样，都会生成<br /> <span style="color:#ff0000;">代理对象</span>。<br /> <br />Spring的传统AOP中根据类是否实现接口，来采用不同的代理方式<br /> <br />1. 如果实现类接口，使用JDK动态代理完成AOP<br /> <br />2. 如果没有实现接口，采用CGLIB动态代理完成AOP<br /> </p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230207/4f73cd7ee4a418c9394a63c6f220a704.jpg" alt="Spring（六）----Spring AOP概述及底层实现原理"></p> <p>自我解读：其实代理的本质是，通过生一个代理对象。然后，访问代理对象，代理对象去决定目标对象的执行。</p> <h2>JDK的动态代理（代码了解，理解原理）</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230207/443817721022e963614c13275beb3326.jpg" alt="Spring（六）----Spring AOP概述及底层实现原理"></p> <p>1. 使用Proxy类来生成代理对象的一些代码如下：</p> <pre><code class="language-java">/**   * 使用JDK的方式生成代理对象   */   public class MyProxyUtils {       public static UserDao getProxy(final UserDao dao) {           // 使用Proxy类生成代理对象           UserDao proxy = (UserDao) Proxy.newProxyInstance(dao.getClass().getClassLoader(),                   dao.getClass().getInterfaces(), new InvocationHandler() {                          // 代理对象方法一直线，invoke方法就会执行一次                       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {                           if ("save".equals(method.getName())) {                               System.out.println("记录日志...");                               // 开启事务                           }                           // 提交事务                           // 让dao类的save或者update方法正常的执行下去                           return method.invoke(dao, args);                       }                   });           // 返回代理对象           return proxy;       }   }  </code></pre> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://download.csdn.net/download/csdn_kenneth/10222771"  style="color:rgb(12,137,207);font-family:'microsoft yahei';font-size:15px;background-color:rgb(255,255,255);" rel="nofollow">基于JDK的动态代理</a></p> <h2>CGLIB的代理技术（代码了解）</h2> <p>1. 引入CBLIB的开发包<br /> <br />* 如果想使用CGLIB的技术来生成代理对象，那么需要引入CGLIB的开发的jar包，在Spring框架核心包中已经引入了CGLIB的开发包了。所以直接引入Spring核心开发包即可</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230207/db4d1107e7057a923a8af2b2d9705a07.jpg" alt="Spring（六）----Spring AOP概述及底层实现原理"></p> <p>2. 编写相关的代码</p> <pre><code class="language-java">public class MyCglibUtils {       /**       * 使用CGLIB方式生成代理的对象       */       // 生成子类，用父类来接收       public static BookDaoImpl getProxy() {              Enhancer enhancer = new Enhancer();           // 设置父类。因为cglib就是要生成子类嘛           enhancer.setSuperclass(BookDaoImpl.class);           // 设置回调函数           enhancer.setCallback(new org.springframework.cglib.proxy.MethodInterceptor() {               // 代理对象的方法执行，回调函数就会执行               // 注意：methodProxy是对前面的参数method，底层生成了一个代理对象               @Override               public Object intercept(Object obj, Method method, Object[] args, MethodProxy methodProxy)                       throws Throwable {                   if (method.getName().equals("save")) {                       System.out.println("记录日志...");                   }                   // 正常执行                   return methodProxy.invokeSuper(obj, args);               }           });           // 生成代理对象           BookDaoImpl proxy = (BookDaoImpl) enhancer.create();              return proxy;       }   }  </code></pre> <p>如果，你写程序，提供了接口，spring就选择jdk动态代理。如果没有提供接口，spring就选择cglib。<br /> <br />jdk动态代理，是在运行期间，动态的生成代理对象。而cglib是在类加载的时候生成子类。<br /> <br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://download.csdn.net/download/csdn_kenneth/10222859"  style="color:rgb(12,137,207);font-family:'microsoft yahei';font-size:15px;background-color:rgb(255,255,255);" rel="nofollow">cglib的方式</a>                 </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-26328.htm">农大动物医院电话地址是多少号啊（农大动物医院怎么样）</a></p>
@@ -114,16 +113,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-20-winxray-node.htm" title="「10月20日」最高速度19M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月20日」最高速度19M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19898.htm" title="给动物打疫苗的官方部门叫什么（动物打疫苗是干啥的）">给动物打疫苗的官方部门叫什么（动物打疫苗是干啥的）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-27-free-subscribe-node.htm" title="「10月27日」最高速度18M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月27日」最高速度18M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-18986.htm" title="动物医院的设备叫什么 动物医院的设备叫什么名字">动物医院的设备叫什么 动物医院的设备叫什么名字</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-21-node-share-links.htm" title="「8月21日」最高速度22.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「8月21日」最高速度22.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19439.htm" title="Python数据可视化-Matplotlib线性图(折线图等) 代码教学 Part 1">Python数据可视化-Matplotlib线性图(折线图等) 代码教学 Part 1</a></li>
-                        <li class="py-2"><a href="/news/article-21272.htm" title="vue项目如何刷新当前页面">vue项目如何刷新当前页面</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-9-22-latest-winxray-node.htm" title="「9月22日」最高速度22.1M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月22日」最高速度22.1M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-3-winxray-windows.htm" title="「10月3日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月3日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26803.htm" title="Go_error处理及panic、recover使用的正确姿势">Go_error处理及panic、recover使用的正确姿势</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-winxray-node-github.htm" title="「12月6日」最高速度22.3M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「12月6日」最高速度22.3M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-winxray-github.htm" title="「11月14日」最高速度18.2M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月14日」最高速度18.2M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-today-winxray-node.htm" title="「10月22日」最高速度18.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月22日」最高速度18.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-12-11-winxray-github.htm" title="「12月11日」最高速度20.2M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「12月11日」最高速度20.2M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-15-winxray-node.htm" title="「9月15日」最高速度18M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月15日」最高速度18M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-node-subscribe-links.htm" title="「12月19日」最高速度18.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「12月19日」最高速度18.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-winxray-windows.htm" title="「10月18日」最高速度18.3M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月18日」最高速度18.3M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-winxray-windows.htm" title="「11月26日」最高速度20.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月26日」最高速度20.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -135,7 +134,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>

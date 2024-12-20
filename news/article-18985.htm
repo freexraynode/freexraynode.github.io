@@ -8,14 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>docker设置代理服务器，解决pull命令：Error response from daemon: Get https://registry-1.docker.io/v2&#8230;</title>
         <meta name="description" content="当虚拟机无法连接访问到外网https://registry-1.docker.io/v2，执行docker pull命令会抛出异常，如下： [root@localhost default]# dock" />
-        <link rel="icon" href="__ADDON__/img/freexraynode/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/freexraynode/favicon.ico" type="image/x-icon"/>
     <!-- google-fonts -->
     <link href="//fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- //google-fonts -->
     <!-- Template CSS Style link -->
     <link rel="stylesheet" href="/assets/website/css/freexraynode/style-starter.css">
-    
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-768TFY4KSC"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -100,7 +99,8 @@
         <div class="container pb-2">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body"> <h2>当虚拟机无法连接访问到外网https://registry-1.docker.io/v2，执行docker pull命令会抛出异常，如下：</h2> <p>[root@localhost default]# docker pull debian<br />Using default tag: latest<br />Error response from daemon: Get https://registry-1.docker.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)</p> <h2>通过设置代理可以解决：</h2> <ul> <li> <p>创建http-proxy.conf文件:</p> </li> </ul> <p>　　　　$ mkdir -p /etc/systemd/system/docker.service.d<br />　　　　$ vim /etc/systemd/system/docker.service.d/http-proxy.conf<br />　　添加如下内容：<br />　　　　[Service]<br />　　　　Environment="HTTP_PROXY=http://&lt;allowed_proxy_ipv4_address&gt;:&lt;proxy_port_num&gt;/"<br />　　　　[Service]<br />　　　　Environment="HTTPS_PROXY=https://&lt;allowed_proxy_ipv4_address&gt;:&lt;proxy_port_num&gt;/"</p> <ul> <li>执行reload命令: &nbsp;$ sudo systemctl daemon-reload</li> </ul> <ul> <li>重启docker: &nbsp;$ sudo systemctl restart docker</li> </ul> <ul> <li>查看环境变量值： $ systemctl show --property=Environment docker</li> </ul> <h2>再次执行：</h2> <p>[root@localhost docker.service.d]# docker pull debian<br />Using default tag: latest<br />latest: Pulling from library/debian<br />55cbf04beb70: Pull complete<br />Digest: sha256:f1f61086ea01a72b30c7287adee8c929e569853de03b7c462a8ac75e0d0224c4<br />Status: Downloaded newer image for debian:latest</p> </div> <p>转载于:https://www.cnblogs.com/onetwothree/p/9371752.html</p> </div> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="XRayNode每日订阅站" data-url="https://xraynode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body"> <h2>当虚拟机无法连接访问到外网https://registry-1.docker.io/v2，执行docker pull命令会抛出异常，如下：</h2> <p>[root@localhost default]# docker pull debian<br />Using default tag: latest<br />Error response from daemon: Get https://registry-1.docker.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)</p> <h2>通过设置代理可以解决：</h2> <ul> <li> <p>创建http-proxy.conf文件:</p> </li> </ul> <p>　　　　$ mkdir -p /etc/systemd/system/docker.service.d<br />　　　　$ vim /etc/systemd/system/docker.service.d/http-proxy.conf<br />　　添加如下内容：<br />　　　　[Service]<br />　　　　Environment="HTTP_PROXY=http://&lt;allowed_proxy_ipv4_address&gt;:&lt;proxy_port_num&gt;/"<br />　　　　[Service]<br />　　　　Environment="HTTPS_PROXY=https://&lt;allowed_proxy_ipv4_address&gt;:&lt;proxy_port_num&gt;/"</p> <ul> <li>执行reload命令: &nbsp;$ sudo systemctl daemon-reload</li> </ul> <ul> <li>重启docker: &nbsp;$ sudo systemctl restart docker</li> </ul> <ul> <li>查看环境变量值： $ systemctl show --property=Environment docker</li> </ul> <h2>再次执行：</h2> <p>[root@localhost docker.service.d]# docker pull debian<br />Using default tag: latest<br />latest: Pulling from library/debian<br />55cbf04beb70: Pull complete<br />Digest: sha256:f1f61086ea01a72b30c7287adee8c929e569853de03b7c462a8ac75e0d0224c4<br />Status: Downloaded newer image for debian:latest</p> </div> <p>转载于:https://www.cnblogs.com/onetwothree/p/9371752.html</p> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>下一个：<a href="/news/article-18986.htm">动物医院的设备叫什么 动物医院的设备叫什么名字</a></p>
                                     </div>
@@ -112,16 +112,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-15-winxray-node.htm" title="「9月15日」最高速度18M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月15日」最高速度18M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share-links.htm" title="「11月18日」最高速度19.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月18日」最高速度19.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-6-winxray-windows.htm" title="「11月6日」最高速度22.3M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月6日」最高速度22.3M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-18985.htm" title="docker设置代理服务器，解决pull命令：Error response from daemon: Get https://registry-1.docker.io/v2&#8230;">docker设置代理服务器，解决pull命令：Error response from daemon: Get https://registry-1.docker.io/v2&#8230;</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-9-node-share.htm" title="「11月9日」最高速度21.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月9日」最高速度21.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-28-free-node-subscribe.htm" title="「9月28日」最高速度20.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月28日」最高速度20.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-14-winxray-github.htm" title="「10月14日」最高速度21.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月14日」最高速度21.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-1-free-subscribe-node.htm" title="「10月1日」最高速度20.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月1日」最高速度20.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-winxray-github.htm" title="「11月16日」最高速度18.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月16日」最高速度18.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-16-winxray-github.htm" title="「9月16日」最高速度20.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月16日」最高速度20.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-winxray-node.htm" title="「10月13日」最高速度22.2M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「10月13日」最高速度22.2M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-latest-winxray-node.htm" title="「11月21日」最高速度19.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月21日」最高速度19.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27270.htm" title="郑州动物防疫站在哪里（郑州动物疾病预防控制中心）">郑州动物防疫站在哪里（郑州动物疾病预防控制中心）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-24-winxray-windows.htm" title="「8月24日」最高速度22M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「8月24日」最高速度22M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-node-subscribe-links.htm" title="「12月19日」最高速度18.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「12月19日」最高速度18.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-31-free-subscribe-node.htm" title="「8月31日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「8月31日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23100.htm" title="王允海宠物医院地址在哪里啊（王允海宠物医院地址在哪里啊）">王允海宠物医院地址在哪里啊（王允海宠物医院地址在哪里啊）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-today-winxray-node.htm" title="「11月17日」最高速度20.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月17日」最高速度20.5M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-24-free-high-speed-nodes.htm" title="「9月24日」最高速度22.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月24日」最高速度22.8M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-17-node-share-links.htm" title="「9月17日」最高速度20.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「9月17日」最高速度20.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -133,7 +133,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -162,6 +162,15 @@
         <div class="copyright-footer text-center">
             <div class="container">
                 <div class="columns">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                     <p>Free Xray Node机场节点官网 版权所有 Powered by WordPress</p>
                 </div>
             </div>
