@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freexraynode.github.io/news/article-41691.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Zookeeper 基本概念</title>
+        <meta name="description" content="一.Zookeeper的背景 随着互联网技术的发展，企业对计算机系统的计算，存储能力越来越高，各大IT企业都在追求并发，海量存储的极致，在这样的背景下，单纯依靠高性能单机来完成计算机，云计算的任务已经" />
+        <link rel="icon" href="/assets/website/img/freexraynode/favicon.ico" type="image/x-icon"/>
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="/assets/website/css/freexraynode/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-768TFY4KSC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-768TFY4KSC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>Free Xray Node</span>
+                </a>
+                                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h1 class="inner-text-title font-weight-bold mb-sm-3 mb-2">Zookeeper 基本概念</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- middle section -->
+    <section class="w3l-servicesblock py-md-5 py-4">
+        <div class="container pb-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="XRayNode每日订阅站" data-url="https://xraynode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2><a id="Zookeeper_0" rel="nofollow"></a>一.Zookeeper的背景</h2> <p>随着互联网技术的发展，企业对计算机系统的计算，存储能力越来越高，各大IT企业都在追求并发，海量存储的极致，在这样的背景下，单纯依靠高性能单机来完成计算机，云计算的任务已经无法满足需求，企业的IT架构逐渐由集中式往分布式过度，所谓的分布式是指：把一个计算任务分解成若干技术单元，并分派到不同的计算机中去执行，最终汇总计算结果的过程</p> <h2><a id="Zookeeper_4" rel="nofollow"></a>二.Zookeeper的概念</h2> <p>用一句话对其进行定义就是:它是一套高吞吐的分布式协调系统<br /> Zookeeper至少具有以下特点：<br /> 1.Zookeeper的主要作用是为分布式系统提供协调服务,包括但不限于:分布式锁,统一命名服务,配置管理,负载均衡,主控服务器选举以及主从切换等。<br /> 2.Zookeeper自身通常也以分布式形式存在。一个Zookeeper服务通常由多台服务器节点构成,只要其中超过一半的节点存活,Zookeeper即可正常对外提供服务,所以Zookeeper也暗含高可用的特性。客户端可以通过TCP协议连接至任意一个服务端节点请求Zookeeper集群提供服务,而集群内部如何通信以及如何保持分布式数据一致性等细节对客户端透明。如下图所示<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/841f139366f76d71eda06a00e838097c.jpg" alt="Zookeeper 基本概念">3.Zookeeper是以高吞吐量为目标进行设计的,故而在读多写少的场合有非常好的性能表现。<br /> Zookeeper具有高吞吐特性的主要原因有以下几点:</p> <p>1.Zookeeper集群的任意一个服务端节点都可以直接响应客户端的读请求(写请求会不一样些,下面会详谈),并且可以通过增加节点进行横向扩展。这是其吞吐量高的主要原因</p> <p>2.Zookeeper将全量数据存储于内存中,从内存中读取数据不需要进行磁盘IO,速度要快得多。</p> <p>3.Zookeeper放松了对分布式数据的强一致性要求,即不保证数据实时一致,允许分布式数据经过一个时间窗口达到最终一致,这也在一定程度上提高了其吞吐量。</p> <p>而写请求,或者说事务请求,因为要进行不同服务器结点间状态的同步,一定程度上会影响其吞吐量。故而简单的增加Zookeeper的服务器节点数量,对其吞吐量的提升并不一定能起到正面效果。服务器节点增加,有利于提升读请求的吞吐量,但会延长服务器节点数据的同步时间,必须视具体情况在这两者之间取得一个平衡。</p> <h2><a id="Zookeeper_20" rel="nofollow"></a>Zookeeper是分布式系统的一个润滑剂</h2> <h2><a id="Zookeeper_22" rel="nofollow"></a>三、Zookeeper的典型应用场景</h2> <p>（1）数据发布/订阅<br /> 数据的发布与订阅，顾名思义就是一方把数据发布出来，另一方通过某种手段获取。<br /> 通常数据发布与订阅有两种模式：推模式和拉模式，推模式一般是服务器主动往客户端推送信息，拉模式是客户端主动去服务端请求目标数据（通常采用定时轮询的方式）<br /> Zookeeper采用两种方式互相结合：发布者将数据发布到Zookeeper集群节点上，订阅者通过一定的方法告诉Zookeeper服务器，自己对哪个节点的数据感兴趣，那么在服务端数据发生变化时，就会通知客户端去获取这些信息。<br /> （2）负载均衡<br /> 　首先在服务端启动的时候，把自己在zookeeper服务器上注册成一个临时节点。zookeeper拥有两种形式的节点，一种是临时节点，一种是永久节点。这两种节点后面的会有较为详细的介绍。注册成临时节点后，再服务端出问题时，节点会自动的从zookeeper上删除，如此zookeeper服务器上的列表就是最新的可用的列表。<br /> 　客户端在需要访问服务器的时候首先会去Zookeeper获得所有可用的服务端的连接信息。<br /> 　客户端通过一定的策略（如随机）选择一个与之建立连接。<br /> 　当客户端发现连接不可用时，会再次从zookeeper上获取可用的服务端连接，并同时删除之前获取的连接列表。<br /> 　 （3）命名服务<br /> 　提供名称的服务。如一般使用较多的有两种id，一种是数据库自增长id，一种是UUID，两种id都有局限，自增长id仅适合在单表单库中使用，uuid适合在分布式系统中使用但由于id没有规律难以理解。而ZK提供了一定的接口可以用来获取一个顺序增长的，可以在集群环境下使用的id。<br /> 　 （4）分布式协调，通知，心跳服务<br /> 　在分布式服务系统中，我们常常需要知道哪个服务是可用的，哪个服务是不可用的，传统的方式是通过ping主机来实现的，ping得200的结果说明说明该服务是OK的。<br /> 　而在使用 zookeeper时，可以将所有的服务都注册成一个临时节点，我们判断一个服务是否可用，只需要判断这个节点是否在zookeeper集群中存在就可以了，不需要直接去连接和ping服务所在主机，减少系统的复杂度和对服务主机的压力。</p> <h2><a id="Zookeeper_40" rel="nofollow"></a>四、Zookeeper的优势</h2> <p>1.源代码开放<br /> 2.高性能，易用稳定，改由是已在众多分布式系统中得到验证<br /> 3.有着广泛的应用，并且与众多大数据相关技术能事项良好的融合开发。</p> <h2><a id="_Zookeeper_45" rel="nofollow"></a>五、 Zookeeper集群角色</h2> <p>在Zookeeper集群中,分别有Leader,Follower和Observer三种类型的服务器角色。</p> <p>Leader<br /> Leader服务器在整个正常运行期间有且仅有一台,集群会通过选举的方式选举出Leader服务器,由它同统一处理集群的事务性请求以及集群内各服务器的调度。</p> <p>Follower<br /> Follower的主要职责有以下几点:<br /> 1.参与Leader选举投票<br /> 2.参与事务请求Proposal的投票<br /> 3.处理客户端非事务请求(读),并转发事务请求(写)给Leader服务器。<br /> Observer<br /> Observer是弱化版的Follower。其像Follower一样能够处理非事务也就是读请求,并转发事务请求给Leader服务器,但是其不参与任何形式的投票,不管是Leader选举投票还是事务请求Proposal的投票。引入这个角色主要是为了在不影响集群事务处理能力的前提下提升集群的非事务处理的吞吐量。</p> <h2><a id="ZookeeperZAB_60" rel="nofollow"></a>六、Zookeeper如何保证分布式数据一致性——ZAB协议</h2> <p>Zookeeper采用ZAB(Zookeeper Atomic Broadcast)协议来保证分布式数据一致性。ZAB并不是一种通用的分布式一致性算法,而是一种专为Zookeeper设计的崩溃可恢复的原子消息广播算法。ZAB协议包括两种基本模式:崩溃恢复模式和消息广播模式。崩溃恢复模式主要用来在集群启动过程,或者Leader服务器崩溃退出后进行新的Leader服务器的选举以及数据同步;消息广播模式主要用来进行事务请求的处理。下面就从这两个方面来介绍</p> <p>6.1 事务请求的处理流程<br /> ZAB协议的核心是定义了对事务请求的处理方式,整个过程可以概括如下:</p> <p>1.所有的事务请求都交由集群的Leader服务器来处理,Leader服务器会将一个事务请求转换成一个Proposal(提议),并为其生成一个全局递增的唯一ID,这个ID就是事务ID,即ZXID,Leader服务器对Proposal是按其ZXID的先后顺序来进行排序和处理的。<br /> 2.之后Leader服务器会将Proposal放入每个Follower对应的队列中(Leader会为每个Follower分配一个单独的队列),并以FIFO的方式发送给Follower服务器。<br /> 3.Follower服务器接收到事务Proposal后,首先以事务日志的方式写入本地磁盘,并且在成功后返回Leader服务器一个ACK响应。<br /> 4.Leader服务器只要收到过半Follower的ACK响应,就会广播一个Commit消息给Follower以通知其进行Proposal的提交,同时Leader自身也会完成Proposal的提交。<br /> 整个过程如下图所示<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/17d2101c3226f092f32a91bec76c5d88.jpg" alt="Zookeeper 基本概念">6.2 Leader服务器的选举流程<br /> 当集群中不存在Leader服务器时集群会进行Leader服务器的选举,这通常存在于两种情况:1.集群刚启动时 2.集群运行时,但Leader服务器因故退出。集群中的服务器会向其他所有的Follower服务器发送消息,这个消息可以形象化的称之为选票,选票主要由两个信息组成,所推举的Leader服务器的ID(即配置在myid文件中的数字),以及该服务器的事务ID,事务表示对服务器状态变更的操作,一个服务器的事务ID越大,则其数据越新。整个过程如下所述:</p> <p>1.Follower服务器投出选票(SID,ZXID),第一次每个Follower都会推选自己为Leader服务器,也就是说每个Follower第一次投出的选票是自己的服务器ID和事务ID。<br /> 2.每个Follower都会接收到来自于其他Follower的选票,它会基于如下规则重新生成一张选票:比较收到的选票和自己的ZXID的大小,选取其中最大的;若ZXID一样则选取SID即服务器ID最大的。最终每个服务器都会重新生成一张选票,并将该选票投出去。<br /> 这样经过多轮投票后,如果某一台服务器得到了超过半数的选票,则其将当前选为Leader。由以上分析可知,Zookeeper集群对Leader服务器的选择具有偏向性,偏向于那些ZXID更大,即数据更新的机器。</p> <p>整个过程如下图所示<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/ef601840f308eb304ac21d0302d376e7.jpg" alt="Zookeeper 基本概念"></p> <h2><a id="_Zookeeper_82" rel="nofollow"></a>七. Zookeeper如何进行服务器故障的容错</h2> <p>Zookeeper通过事务日志和数据快照来避免因为服务器故障导致的数据丢失。</p> <p>事务日志是指服务器在更新内存数据前先将事务操作以日志的方式写入磁盘,Leader和Follower服务器都会记录事务日志。<br /> 数据快照是指周期性通过深度遍历的方式将内存中的树形结构数据转入外存快照中。但要注意这种快照是"模糊"的,因为可能在做快照时内存数据发生了变化。但是因为Zookeeper本身对事务操作进行了幂等性保证,故在将快照加载进内存后会通过执行事务日志的方式来讲数据恢复到最新状态。</p> <p>在Zookeeper的官网上有这么一句话：ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.</p> <p>这大概描述了Zookeeper主要可以干哪些事情：配置管理，名字服务，提供分布式同步以及集群管理。那这些服务又到底是什么呢？我们为什么需要这样的服务？我们又为什么要使用Zookeeper来实现呢，使用Zookeeper有什么优势？接下来我会挨个介绍这些到底是什么，以及有哪些开源系统中使用了。</p> <p>配置管理<br /> 在我们的应用中除了代码外，还有一些就是各种配置。比如数据库连接等。一般我们都是使用配置文件的方式，在代码中引入这些配置文件。但是当我们只有一种配置，只有一台服务器，并且不经常修改的时候，使用配置文件是一个很好的做法，但是如果我们配置非常多，有很多服务器都需要这个配置，而且还可能是动态的话使用配置文件就不是个好主意了。这个时候往往需要一种集中管理配置的方法，我们在这个集中的地方修改了配置，所有对这个配置感兴趣的都可以获得变更。比如我们可以把配置放在数据库里，然后所有需要配置的服务都去这个数据库读取配置。但是，因为很多服务的正常运行都非常依赖这个配置，所以需要这个集中提供配置服务的服务具备很高的可靠性。一般我们可以用一个集群来提供这个配置服务，但是用集群提升可靠性，那如何保证配置在集群中的一致性呢？ 这个时候就需要使用一种实现了一致性协议的服务了。Zookeeper就是这种服务，它使用Zab这种一致性协议来提供一致性。现在有很多开源项目使用Zookeeper来维护配置，比如在HBase中，客户端就是连接一个Zookeeper，获得必要的HBase集群的配置信息，然后才可以进一步操作。还有在开源的消息队列Kafka中，也使用Zookeeper来维护broker的信息。在Alibaba开源的SOA框架Dubbo中也广泛的使用Zookeeper管理一些配置来实现服务治理。</p> <p>假设我们的程序是分布式部署在多台机器上，如果我们要改变程序的配置文件，需要逐台机器去修改，非常麻烦，现在把这些配置全部放到zookeeper上去，保存在 zookeeper 的某个目录节点中，然后所有相关应用程序对这个目录节点进行监听，一旦配置信息发生变化，每个应用程序就会收到 zookeeper 的通知，然后从 zookeeper 获取新的配置信息应用到系统中。</p> <p>名字服务<br /> 名字服务这个就很好理解了。比如为了通过网络访问一个系统，我们得知道对方的IP地址，但是IP地址对人非常不友好，这个时候我们就需要使用域名来访问。但是计算机是不能是别域名的。怎么办呢？如果我们每台机器里都备有一份域名到IP地址的映射，这个倒是能解决一部分问题，但是如果域名对应的IP发生变化了又该怎么办呢？于是我们有了DNS这个东西。我们只需要访问一个大家熟知的(known)的点，它就会告诉你这个域名对应的IP是什么。在我们的应用中也会存在很多这类问题，特别是在我们的服务特别多的时候，如果我们在本地保存服务的地址的时候将非常不方便，但是如果我们只需要访问一个大家都熟知的访问点，这里提供统一的入口，那么维护起来将方便得多了。</p> <p>分布式锁<br /> 其实在第一篇文章中已经介绍了Zookeeper是一个分布式协调服务。这样我们就可以利用Zookeeper来协调多个分布式进程之间的活动。比如在一个分布式环境中，为了提高可靠性，我们的集群的每台服务器上都部署着同样的服务。但是，一件事情如果集群中的每个服务器都进行的话，那相互之间就要协调，编程起来将非常复杂。而如果我们只让一个服务进行操作，那又存在单点。通常还有一种做法就是使用分布式锁，在某个时刻只让一个服务去干活，当这台服务出问题的时候锁释放，立即fail over到另外的服务。这在很多分布式系统中都是这么做，这种设计有一个更好听的名字叫Leader Election(leader选举)。比如HBase的Master就是采用这种机制。但要注意的是分布式锁跟同一个进程的锁还是有区别的，所以使用的时候要比同一个进程里的锁更谨慎的使用。</p> <p>集群管理<br /> 在分布式的集群中，经常会由于各种原因，比如硬件故障，软件故障，网络问题，有些节点会进进出出。有新的节点加入进来，也有老的节点退出集群。这个时候，集群中其他机器需要感知到这种变化，然后根据这种变化做出对应的决策。比如我们是一个分布式存储系统，有一个中央控制节点负责存储的分配，当有新的存储进来的时候我们要根据现在集群目前的状态来分配存储节点。这个时候我们就需要动态感知到集群目前的状态。还有，比如一个分布式的SOA架构中，服务是一个集群提供的，当消费者访问某个服务时，就需要采用某种机制发现现在有哪些节点可以提供该服务(这也称之为服务发现，比如Alibaba开源的SOA框架Dubbo就采用了Zookeeper作为服务发现的底层机制)。还有开源的Kafka队列就采用了Zookeeper作为Cosnumer的上下线管理。</p> <p>自己的一些理解：</p> <p>Leader可以接受client请求，也接收其他Server转发的写请求，负责更新系统状态。 Follower也可以接收client请求，如果是写请求将转发给Leader来更新系统状态，读请求则由Follower的内存数据库直接响应。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/a4ef81ef2b815bd1f86fa6479696c1b4.jpg" alt="Zookeeper 基本概念">事物操作<br /> 　　在ZooKeeper中，能改变ZooKeeper服务器状态的操作称为事务操作。一般包括数据节点创建与删除、数据内容更新和客户端会话创建与失效等操作。对应每一个事务请求，ZooKeeper都会为其分配一个全局唯一的事务ID，用 ZXID 表示，通常是一个64位的数字。每一个 ZXID对应一次更新操作，从这些 ZXID 中可以间接地识别出 ZooKeeper 处理这些事务操作请求的<br /> 全局顺序。</p> <p>Watcher(事件监听器)<br /> 　　ZooKeeper 中一个很重要的特性。ZooKeeper允许用户在指定节点上注册一些 Watcher，并且在一些特定事件触发的时候，ZooKeeper服务端会将事件通知到感兴趣的客户端上去。该机制是 ZooKeeper 实现分布式协调服务的重要特性。</p> <p>ZooKeeper数据模型的结构整体上可以看作是一棵树，每个节点称做一个ZNode。每个ZNode都可以通过其路径唯一标识在每个ZNode上可存储少量数据(默认是1M, 可以通过配置修改, 通常不建议在ZNode上存储大量的数据)</p> <p>ZooKeeper支持一种Watch操作，Client可以在某个ZNode上设置一个Watcher，来Watch该ZNode上的变化。如果该ZNode上有相应的变化，就会触发这个Watcher，把相应的事件通知给设置Watcher的Client。需要注意的是，ZooKeeper中的Watcher是一次性的，即触发一次就会被取消，如果想继续Watch的话，需要客户端重新设置Watcher</p> <p>节点状态<br /> 　　每个集群中的节点都有一个状态 LOOKING, FOLLOWING, LEADING, OBSERVING。都属于这4种，每个节点启动的时候都是LOOKING状态，如果这个节点参与选举但最后不是leader，则状态是FOLLOWING，如果不参与选举则是OBSERVING，leader的状态是LEADING。</p> <p>关于ZooKeeper集群服务器数<br /> 　　ZooKeeper 官方确实给出了关于奇数的建议，但绝大部分 ZooKeeper 用户对于这个建议认识有偏差。一个 ZooKeeper 集群如果要对外提供可用的服务，那么集群中必须要有过半的机器正常工作并且彼此之间能够正常通信。基于这个特性，如果想搭建一个能够允许 N 台机器 down 掉的集群，那么就要部署一个由 2*N+1 台服务器构成的 ZooKeeper 集群。因此，一个由 3 台机器构成的 ZooKeeper 集群，能够在挂掉 1 台机器后依然正常工作，而对于一个由 5 台服务器构成的 ZooKeeper 集群，能够对 2 台机器挂掉的情况进行容灾。注意，如果是一个由6台服务器构成的 ZooKeeper 集群，同样只能够挂掉 2 台机器，因为如果挂掉 3 台，剩下的机器就无法实现过半了。</p> <p>zookeeper有这样一个特性：</p> <p>【集群中只要有超过过半的机器是正常工作的，那么整个集群对外就是可用的】</p> <p>也就是说如果有2个zookeeper，那么只要有1个死了zookeeper就不能用了，因为1没有过半，所以2个zookeeper的死亡容忍度为0；</p> <p>同理，要是有3个zookeeper，一个死了，还剩下2个正常的，过半了，所以3个zookeeper的容忍度为1；</p> <p>同理你多列举几个：2-&gt;0;3-&gt;1;4-&gt;1;5-&gt;2;6-&gt;2会发现一个规律，2n和2n-1的容忍度是一样的，</p> <p>都是n-1，所以为了更加高效，何必增加那一个不必要的zookeeper呢。</p> <p>ZooKeeper可伸缩性<br /> 那么，ZooKeeper为什么要引入Observer这个角色呢？其实在ZooKeeper中引入Observer，主要是为了使ZooKeeper具有更好的可伸缩性。那么，何为可伸缩性？关于伸缩性，对于不同的人意味着不同的事情。 而在这里是说，如果我们的工作负载可以通过给系统分配更多的资源来分担，那么这个系统就是可伸缩的；一个不可伸缩的系统却无法通过增加资源来提升性能，甚至会在工作负载增加时，性能会急剧下降。<br /> 在Observer出现以前，ZooKeeper的伸缩性由Follower来实现，我们可以通过添加Follower节点的数量来保证ZooKeeper服务的读性能。但是随着Follower节点数量的增加，ZooKeeper服务的写性能受到了影响。</p> <p>简单来说，Zab协议规定：来自Client的所有写请求，都要转发给ZK服务中唯一的Server—Leader，由Leader根据该请求发起一个Proposal（请求）。然后，其他的Server对该Proposal（请求）进行Vote（投票）。之后，Leader对Vote（投票）进行收集，当Vote数量过半时Leader会向所有的Server发送一个通知消息。最后，当Client所连接的Server收到该消息时，会把该操作更新到内存中并对Client的写请求做出回应。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/6be17a1f16eb4eb4cd2d77174406dfcf.jpg" alt="Zookeeper 基本概念"><br /> 从图中我们可以看出， ZooKeeper 服务器在上述协议中实际扮演了两个职能。它们一方面从客户端接受连接与操作请求，另一方面对操作结果进行投票。这两个职能在 ZooKeeper集群扩展的时候彼此制约。例如，当我们希望增加 ZK服务中Client数量的时候，那么我们就需要增加Server的数量，来支持这么多的客户端。然而，从Zab协议对写请求的处理过程中我们可以发现，增加服务器的数量，则增加了对协议中投票过程的压力。因为Leader节点必须等待集群中过半Server响应投票，于是节点的增加使得部分计算机运行较慢，从而拖慢整个投票过程的可能性也随之提高，写操作也会随之下降。这正是我们在实际操作中看到的问题——随着 ZooKeeper 集群变大，写操作的吞吐量会下降。</p> <p>所以，我们不得不得在增加Client数量的期望和我们希望保持较好吞吐性能的期望间进行权衡。要打破这一耦合关系，我们引入了不参与投票的服务器，称为Observer。 Observer可以接受客户端的连接，并将写请求转发给Leader节点。但是，Leader节点不会要求 Observer参加投票。相反，Observer不参与投票过程，仅仅在上述第3歩那样，和其他服务节点一起得到投票结果。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-41209.htm">动物医院哪个部门管理的最好（动物医院有什么）</a></p>
+                                        <p>下一个：<a href="/news/article-41693.htm">动物疫苗接种的注意事项包括有哪些内容（动物疫苗接种的注意事项包括有哪些内容呢）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-winxray-github.htm" title="「11月13日」最高速度20M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月13日」最高速度20M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-winxray-node.htm" title="「12月24日」最高速度19.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「12月24日」最高速度19.7M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33892.htm" title="动物防疫基本原则（动物防疫基本原则是什么）">动物防疫基本原则（动物防疫基本原则是什么）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-winxray-node-share.htm" title="「11月22日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「11月22日」最高速度18.6M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-35601.htm" title="Java8 LocalDate、LocalDateTime、LocalTime、Instant">Java8 LocalDate、LocalDateTime、LocalTime、Instant</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-node-subscribe-links.htm" title="「12月19日」最高速度18.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接">「12月19日」最高速度18.4M/S，2024年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-36760.htm" title="让猫挠了轻微出血有事吗猫打了狂犬疫苗 让猫挠了轻微出血有事吗猫打了狂犬疫苗会怎么样">让猫挠了轻微出血有事吗猫打了狂犬疫苗 让猫挠了轻微出血有事吗猫打了狂犬疫苗会怎么样</a></li>
+                        <li class="py-2"><a href="/news/article-29132.htm" title="Java实现带缓冲的输入输出流_java">Java实现带缓冲的输入输出流_java</a></li>
+                        <li class="py-2"><a href="/news/article-37775.htm" title="宠物食品加工厂要投资多少亿元（宠物食品加工厂利润）">宠物食品加工厂要投资多少亿元（宠物食品加工厂利润）</a></li>
+                        <li class="py-2"><a href="/news/article-24420.htm" title="宠物粮批发平台有哪些公司（宠物粮批发平台有哪些公司招聘）">宠物粮批发平台有哪些公司（宠物粮批发平台有哪些公司招聘）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //middle section -->
+        <!-- footer -->
+    <footer class="w3l-footer-22 position-relative mt-5 pt-5">
+        <!-- copyright -->
+        <div class="copyright-footer text-center">
+            <div class="container">
+                <div class="columns">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>Free Xray Node机场节点官网 版权所有 Powered by WordPress</p>
+                </div>
+            </div>
+        </div>
+        <!-- //copyright -->
+    </footer>
+    <!-- //footer -->
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- //move top -->
+    <!-- common jquery plugin -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery-3.5.1.min.js"></script>
+    <!-- //common jquery plugin -->
+    <!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/freexraynode/theme-change.js"></script>
+    <script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function() {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- magnific popup -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- //magnific popup -->
+    <!-- MENU-JS -->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- for testimonials carousel -->
+    <script src="/assets/website/js/frontend/freexraynode/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#owl-demo1").owlCarousel({
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: true,
+                    loop: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //for testimonials carousel -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="/assets/website/js/frontend/freexraynode/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+    <!-- //Js scripts -->
+</body>
+
+</html>
