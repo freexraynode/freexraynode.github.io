@@ -15523,7 +15523,7 @@ h3.title-main {
   align-items: center;
 }
 
-.w3l-banner h3 {
+.w3l-banner h3, .w3l-banner h2 {
   font-size: 54px;
   line-height: 64px;
   font-weight: 600;
@@ -15531,14 +15531,14 @@ h3.title-main {
 }
 
 @media (max-width: 1200px) {
-  .w3l-banner h3 {
+  .w3l-banner h3, .w3l-banner h2 {
     font-size: 48px;
     line-height: 58px;
   }
 }
 
 @media (max-width:991px) {
-  .w3l-banner h3 {
+  .w3l-banner h3, .w3l-banner h2 {
     font-size: 38px;
     line-height: 48px;
   }
@@ -15553,7 +15553,7 @@ h3.title-main {
     padding: 15px;
   }
 
-  .w3l-banner h3 {
+  .w3l-banner h3, .w3l-banner h2 {
     font-size: 40px;
   }
 
@@ -15568,14 +15568,14 @@ h3.title-main {
 }
 
 @media (max-width: 410px) {
-  .w3l-banner h3 {
+  .w3l-banner h3, .w3l-banner h2 {
     font-size: 35px;
     line-height: 45px;
   }
 }
 
 @media only screen and (max-width: 360px) {
-  .w3l-banner h3 {
+  .w3l-banner h3, .w3l-banner h2 {
     font-size: 30px;
     line-height: 40px;
   }
