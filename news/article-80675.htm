@@ -1,0 +1,377 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freexraynode.github.io/news/article-80675.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>pandas的apply函数常见用法总结</title>
+        <meta name="description" content="pandas的apply函数通常用于一些复杂的遍历操作（遍历可迭代对象的同时执行一些自定义函数），它的可定制程度高，而且比itterrows、for等操作效率更高，是我非常喜欢而且常用的一个函数。ap" />
+        <link rel="icon" href="/assets/website/img/freexraynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free Xray Node机场节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freexraynode.github.io/news/article-80675.htm" />
+    <meta property="og:site_name" content="Free Xray Node机场节点官网" />
+    <meta property="og:title" content="pandas的apply函数常见用法总结" />
+    <meta property="og:image" content="https://freexraynode.github.io/uploads/20240820-3/9b82074919c26d4c02147bd3d07bca92.webp" />
+        <meta property="og:release_date" content="2025-03-24T08:22:37" />
+    <meta property="og:updated_time" content="2025-03-24T08:22:37" />
+        <meta property="og:description" content="pandas的apply函数通常用于一些复杂的遍历操作（遍历可迭代对象的同时执行一些自定义函数），它的可定制程度高，而且比itterrows、for等操作效率更高，是我非常喜欢而且常用的一个函数。ap" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="pandas的apply函数常见用法总结">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="/assets/website/css/freexraynode/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-768TFY4KSC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-768TFY4KSC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                <a class="navbar-brand" href="/">
+                                <span>Free Xray Node</span>
+                                </a>
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h1 class="inner-text-title font-weight-bold mb-sm-3 mb-2">pandas的apply函数常见用法总结</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- middle section -->
+    <section class="w3l-servicesblock py-md-5 py-4">
+        <div class="container pb-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="XRayNode每日订阅站" data-url="https://xraynode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>pandas的apply函数通常用于一些复杂的遍历操作（遍历可迭代对象的同时执行一些自定义函数），它的可定制程度高，而且比itterrows、for等操作效率更高，是我非常喜欢而且常用的一个函数。apply的主要参数和对应说明可以查看官网（里面已经说得很详细）<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html"  rel="nofollow">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html</a></p> </h1> <h2> <a id="DataFrame_5" rel="nofollow"></a>对DataFrame的每一行执行一些复杂的操作</h2> <p>举一个例子，计算DataFrame中每一条数据中两个人的轨迹相似度，因为和业务相关，里面的子函数不能透露，这里重点呈现apply的用法。</p> <pre><code>import numpy as np   def calculate_trajectory_similarity(df, trail_dict): 	"""  	:param trail_dict:  	:param df:  	:return:  	""" 	body_threshold = 2 	similarity_threshold = 0.6 	insert_columns = [ 		'trajectory_similarity', 	] 	for c in insert_columns: 		try: 			#  			df.insert(df.shape[1], c, 0) 		except ValueError as v: 			#  			print(str(v)) 	 	def calc_trajectory_similarity(element): 		"""计算XXX""" 		trail01 = trail_dict.get(element['record_id1']) 		trail02 = trail_dict.get(element['record_id2']) 		trail_arr1 = np.array(trail01) 		trail_arr2 = np.array(trail02) 		face_trail01 = trail_arr1[trail_arr1[:, -1] == 'face'] 		body_trail01 = trail_arr1[trail_arr1[:, -1] == 'body'] 		face_trail02 = trail_arr2[trail_arr2[:, -1] == 'face'] 		body_trail02 = trail_arr2[trail_arr2[:, -1] == 'body'] 		sub_trail_list = [ 			(face_trail01, face_trail02), 			(face_trail01, body_trail02), 			(body_trail01, face_trail02), 			(body_trail01, body_trail02) 		] 		#  		avg_body_width = (element['body_width1'] + element['body_width2']) / 2 		tr_similarity_list = [] 		for s in sub_trail_list: 			coordinate_arr1, coordinate_arr2, time_overlap = get_real_time_coordinates(s[0], s[1]) 			if time_overlap &gt; 0: 				sub_similarity = trajectory_similarity(coordinate_arr1, coordinate_arr2, avg_body_width, body_threshold, 				                                       similarity_threshold) 			else: 				sub_similarity = 0 			tr_similarity_list.append((min(len(coordinate_arr1), len(coordinate_arr2)), sub_similarity)) 		if len(tr_similarity_list) &gt; 0: 			weights = [i[0] for i in tr_similarity_list] 			if np.sum(weights) &gt; 0:  #  				tr_similarity = np.sum([w * s for w, s in tr_similarity_list]) / np.sum(weights) 			else: 				tr_similarity = 0 		else: 			tr_similarity = 0 		element['trajectory_similarity'] = tr_similarity 		return element 	 	df = df.apply(calc_trajectory_similarity, axis=1) 	return df </code></pre> <p>里面最核心的操作是<code>df = df.apply(calc_trajectory_similarity, axis=1)</code>，这行代码通过apply调用了calc_trajectory_similarity这个函数，并按照行遍历DataFrame，利用每一行（Series对象）的一些字段信息，计算出轨迹相似度，并存储到DataFrame中。<code>get_real_time_coordinates</code>和<code>trajectory_similarity</code>分别是统计实时点和计算轨迹相似度的自定义函数，在这里可以不用关注。</p> <h2> <a id="Series_73" rel="nofollow"></a>对Series的每一个元素执行一些复杂操作</h2> <p>举个例子，现有一些原始的轨迹数据，需要进行预处理，可以针对需要处理的DataFrame字段(Series格式)单独进行操作。</p> <pre><code>import re   def split_to_int(element): 	"""XXX""" 	if element: 		return list(map(int, re.findall(r"[\d]+", element))) 	else: 		element = [] 		return element   def split_to_list(element): 	"""XXX""" 	if element: 		element = list(re.findall(r"[\d]+", element)) 		element = list(map(convert_time, element)) 		return element 	else: 		element = [] 		return element   def trail_string_processing(df): 	""" 	 	:param df: 	:return: 	""" 	#  	pd.set_option('mode.chained_assignment', None) 	trail_name = [ 		'trail_left_top_x', 		'trail_left_top_y', 		'trail_right_btm_x', 		'trail_right_btm_y', 	] 	for t in trail_name: 		df.loc[:, t] = df[t].apply(split_to_int) 	return df   def time_string_processing(df): 	""" 	XXX 	:param df: 	:return:  	""" 	# XXX 	pd.set_option('mode.chained_assignment', None) 	df.loc[:, 'trail_point_time'] = df['trail_point_time'].apply(split_to_list) 	#  	df.loc[:, 'shot_time'] = df['shot_time'].apply( 		lambda x: x.tz_convert('Asia/Shanghai').tz_localize(None) if x.tz else x) 	return df </code></pre> <p>在上面的代码中，每一个apply都是针对series执行的操作，apply里面的函数可以是自定义函数，也可以是lambda匿名函数。</p> <h2> <a id="GroupBy_133" rel="nofollow"></a>对GroupBy对象执行一些复杂操作</h2> <p>举个例子，现有一个DataFrame需要按照某些字段进行分组，然后对分组后的对象执行一些操作，然后重构为新的DataFrame，这时可以通过apply来实现。</p> <pre><code>import pandas as pd   def merge_key_person_info(df): 	""" 	XXXX 	:param df:  	:return: 	""" 	 	def group_by_key_person(element): 		element = element.drop_duplicates(subset=['pvid', 'rel_pvid']) 		#  		key_person_code = element['key_person_code'].iloc[0] 		if key_person_code == 'tag_is_family': 			max_members_num = 6 		else: 			max_members_num = 11 		key_person_num = len(element['pvid'].iloc[0].split(',')) 		num_k = max_members_num - key_person_num 		num_k = num_k if num_k &gt; 1 else 1 		element = element.sort_values(by=['relation_score'], ascending=False).iloc[:num_k, :] 		#  		key_person_score = list(set(element['key_person_score'].values)) 		rel_pvid_list = list(element['rel_pvid'].values) 		relation_code_list = list(element['relation_code'].values) 		relation_score_list = list(element['relation_score'].values) 		start_time_list = list(element['relation_info_start_time'].values) 		end_time_list = list(element['relation_info_end_time'].values) 		series_dict = { 			'pvid': element['pvid'].iloc[0], 			'corp_id': element['corp_id'].iloc[0], 			'key_person_code': element['key_person_code'].iloc[0], 			'key_person_score': key_person_score, 			'rel_pvid': rel_pvid_list, 			'relation_code': relation_code_list, 			'relation_score': relation_score_list, 			'relation_info_start_time': start_time_list, 			'relation_info_end_time': end_time_list 		} 		result = pd.Series(series_dict) 		return result 	 	#  	group_by_obj = df.groupby(by=['pvid', 'corp_id', 'key_person_code']) 	group_df = group_by_obj.apply(group_by_key_person).reset_index(drop=True) 	return group_df </code></pre> </h1> <p>有时候为了提升效率，一些涉及到大量数值计算的apply可以使用numpy的.apply_along_axis替代。</p> <pre><code>def calculate_speed_and_angle_similarity(parameters_df):     """          :param parameters_df:      :return:      """     try:         #          parameters_df.insert(parameters_df.shape[1], 'angle_similarity', 0)         parameters_df.insert(parameters_df.shape[1], 'speed_similarity', 0)     except ValueError as v:         #         logger = my_logger()         logger.info(str(v))      def calc_angle_speed_similarity(element):         """XXXX"""         angle1 = element[35]         angle2 = element[83]          moving_speed1 = element[43]         moving_speed2 = element[91]          #          angle_difference = abs(angle1 - angle2)         if angle_difference &gt;= 90:  #              angle_similarity = 0         else:             angle_similarity = np.cos(abs(angle1 - angle2) / 180 * np.pi)         element[102] = angle_similarity          #          slower_speed = min(moving_speed1, moving_speed2)         faster_speed = max(moving_speed1, moving_speed2)         speed_similarity = slower_speed / faster_speed         element[103] = speed_similarity         return element      arr = parameters_df.values     new_arr = np.apply_along_axis(calc_angle_speed_similarity, axis=1, arr=arr)     parameters_df = pd.DataFrame(new_arr, columns=parameters_df.columns)     return parameters_df </code></pre> <p>按照上述写法，虽然可以在一定程度上提升运行速度，但由于ndarray不支持字符串索引，对字段的操作只能按照序号来进行，很容易出错，代码可读性也比较差，不太推荐在复杂函数中使用，简单的计算用np.apply_along_axis会比较适合。</p> <p>上面的代码都是一些模块的片段，只是用来展示apply的用法，因此无法跑通，请多包涵。为了信息安全，所有注释和细节代码都删除了。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-79994.htm">北京看动物喂动物的地方（北京可以喂动物的景点）</a></p>
+                                        <p>下一个：<a href="/news/article-80676.htm">springboot 使用 ActiveMQ</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-35602.htm" title="宠物领养活动方案策划（宠物领养活动广告词）">宠物领养活动方案策划（宠物领养活动广告词）</a></li>
+                        <li class="py-2"><a href="/news/article-42681.htm" title="动物疫苗现状分析 动物疫苗现状分析报告">动物疫苗现状分析 动物疫苗现状分析报告</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-winxray-github.htm" title="「1月6日」最高速度22.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「1月6日」最高速度22.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-1-free-subscribe-node.htm" title="「3月1日」最高速度20.6M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「3月1日」最高速度20.6M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-41209.htm" title="动物医院哪个部门管理的最好（动物医院有什么）">动物医院哪个部门管理的最好（动物医院有什么）</a></li>
+                        <li class="py-2"><a href="/news/article-42680.htm" title="哈尔滨王春生***2（哈尔滨市王春生判决书）">哈尔滨王春生***2（哈尔滨市王春生判决书）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-winxray-github.htm" title="「1月19日」最高速度18.6M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「1月19日」最高速度18.6M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-64826.htm" title="北京芭比堂动物医院电话号码（芭比堂动物医院有限责任公司）">北京芭比堂动物医院电话号码（芭比堂动物医院有限责任公司）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-free-winxray-node.htm" title="「1月30日」最高速度19.4M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「1月30日」最高速度19.4M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-8-free-node-subscribe.htm" title="「2月8日」最高速度21.2M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「2月8日」最高速度21.2M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //middle section -->
+        <!-- footer -->
+    <footer class="w3l-footer-22 position-relative mt-5 pt-5">
+        <!-- copyright -->
+        <div class="copyright-footer text-center">
+            <div class="container">
+                <div class="columns">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>Free Xray Node机场节点官网 版权所有 Powered by WordPress</p>
+                </div>
+            </div>
+        </div>
+        <!-- //copyright -->
+    </footer>
+    <!-- //footer -->
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- //move top -->
+    <!-- common jquery plugin -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery-3.5.1.min.js"></script>
+    <!-- //common jquery plugin -->
+    <!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/freexraynode/theme-change.js"></script>
+    <script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function() {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- magnific popup -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- //magnific popup -->
+    <!-- MENU-JS -->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- for testimonials carousel -->
+    <script src="/assets/website/js/frontend/freexraynode/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#owl-demo1").owlCarousel({
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: true,
+                    loop: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //for testimonials carousel -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="/assets/website/js/frontend/freexraynode/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+    <!-- //Js scripts -->
+</body>
+
+</html>

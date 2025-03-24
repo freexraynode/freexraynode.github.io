@@ -128,6 +128,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <p>首先创建druid配置类：用户名、密码需要自行修改。</p> <pre><code class="language-java">package org.demo;  import com.alibaba.druid.pool.DruidDataSource; import com.alibaba.druid.support.http.StatViewServlet; import com.alibaba.druid.support.http.WebStatFilter; import org.springframework.boot.context.properties.ConfigurationProperties; import org.springframework.boot.web.servlet.FilterRegistrationBean; import org.springframework.boot.web.servlet.ServletRegistrationBean; import org.springframework.context.annotation.Bean;  import java.util.Arrays; import java.util.HashMap; import java.util.Map;  /****  * 配置好sruid之后，数据源是从默认的tomcat.pool切换到了druid，  * 可是druid的属性比如initialSize、minIdle还未生效，  * 因为在DataSourceProperties.class下没有对应的匹配项，  * 还需要我们手动配置同时配置监控界面:  *  */ public class DruidConfig {     // 将所有前缀为spring.datasource下的配置项都加载到DataSource中      @ConfigurationProperties(prefix ="spring.datasource")     @Bean     public DruidDataSource druidDataSource() {          return new DruidDataSource();      }      @Bean     public ServletRegistrationBean druidStatViewServlet() {          ServletRegistrationBean&lt;StatViewServlet&gt; registrationBean = new ServletRegistrationBean&lt;&gt;(new StatViewServlet(),  "/druid/*");         registrationBean.addInitParameter("allow", "127.0.0.1");// IP白名单 (没有配置或者为空，则允许所有访问)         registrationBean.addInitParameter("deny", "");// IP黑名单 (存在共同时，deny优先于allow)         registrationBean.addInitParameter("loginUsername", "admin");         registrationBean.addInitParameter("loginPassword", "admin");         registrationBean.addInitParameter("resetEnable", "false");         return registrationBean;      }      @Bean     public FilterRegistrationBean druidWebStatFilter() {         FilterRegistrationBean filterRegistrationBean =new FilterRegistrationBean(new WebStatFilter());         Map initParams =new HashMap&lt;&gt;();         initParams.put("exclusions", "*.js,*.css,/druid/*");         filterRegistrationBean.setInitParameters(initParams);         filterRegistrationBean.setUrlPatterns(Arrays.asList("/*"));         return filterRegistrationBean;     } } </code></pre> <p>由于需要验证账户密码，所以需要在application.properties配置原始账户密码：</p> <pre><code>spring.datasource.druid.stat-view-servlet.login-username=admin spring.datasource.druid.stat-view-servlet.login-password=admin</code></pre> <p>起动项目：浏览器输入：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:6000/druid/login.html"  rel="nofollow">http://localhost:6000/druid/login.html</a>&nbsp;&nbsp;<br /> 登录账户密码，可以看到后台界面，操作项目业务之后，查看各项日志记录：<br /><img fetchpriority="high" decoding="async" alt="" height="983" src="http://img.555519.xyz/uploads/20221230/d56ad422140f8ff2b5dc8b8e7461a830.jpg"></p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-78621.htm">swift用xib 自定义View</a></p>
+                                        <p>下一个：<a href="/news/article-79288.htm">动物疫苗不小心扎到人身上会怎么样吗视频（动物疫苗不小心扎到人身上会怎么样吗视频）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -137,16 +138,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-76572.htm" title="58同城怎么领养宠物（58同城领养宠物 北京）">58同城怎么领养宠物（58同城领养宠物 北京）</a></li>
-                        <li class="py-2"><a href="/news/article-46168.htm" title="宠物领养协议具有法律效应吗为什么还要签字（宠物领养协议需要身份证复印件吗）">宠物领养协议具有法律效应吗为什么还要签字（宠物领养协议需要身份证复印件吗）</a></li>
-                        <li class="py-2"><a href="/news/article-52254.htm" title="动物疫苗公司排名（动物疫苗行业龙头）">动物疫苗公司排名（动物疫苗行业龙头）</a></li>
-                        <li class="py-2"><a href="/news/article-71215.htm" title="中牧兽用疫苗代理（中牧疫苗生物官网）">中牧兽用疫苗代理（中牧疫苗生物官网）</a></li>
-                        <li class="py-2"><a href="/news/article-52779.htm" title="我所在的城市有一家宠物医院的英语翻译 我所在的城市有一家宠物医院的英语翻译">我所在的城市有一家宠物医院的英语翻译 我所在的城市有一家宠物医院的英语翻译</a></li>
-                        <li class="py-2"><a href="/news/article-36758.htm" title="厦门动物领养中心地址 厦门动物领养中心地址在哪里">厦门动物领养中心地址 厦门动物领养中心地址在哪里</a></li>
+                        <li class="py-2"><a href="/news/article-77932.htm" title="从0开始学VUE&#8211;使用Django+Vue 构建一个Web项目 登陆界面的实现">从0开始学VUE&#8211;使用Django+Vue 构建一个Web项目 登陆界面的实现</a></li>
                         <li class="py-2"><a href="/news/article-72514.htm" title="动物医院成本核算内容（动物医院利润）">动物医院成本核算内容（动物医院利润）</a></li>
-                        <li class="py-2"><a href="/news/article-66080.htm" title="宠物领养网站源码大全免费（宠物领养平台如何盈利）">宠物领养网站源码大全免费（宠物领养平台如何盈利）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-17-node-share.htm" title="「1月17日」最高速度18.2M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「1月17日」最高速度18.2M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-31-winxray-node.htm" title="「1月31日」最高速度21.5M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「1月31日」最高速度21.5M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-node-subscribe.htm" title="「1月4日」最高速度21M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「1月4日」最高速度21M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-41691.htm" title="Zookeeper 基本概念">Zookeeper 基本概念</a></li>
+                        <li class="py-2"><a href="/news/article-57768.htm" title="济南免费领养宠物狗 济南免费领养宠物狗的地方">济南免费领养宠物狗 济南免费领养宠物狗的地方</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-latest-winxray-node.htm" title="「1月9日」最高速度22.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「1月9日」最高速度22.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-70536.htm" title="猫多久不认得主人会死（猫多久不认得主人会死掉）">猫多久不认得主人会死（猫多久不认得主人会死掉）</a></li>
+                        <li class="py-2"><a href="/news/article-71215.htm" title="中牧兽用疫苗代理（中牧疫苗生物官网）">中牧兽用疫苗代理（中牧疫苗生物官网）</a></li>
+                        <li class="py-2"><a href="/news/article-61816.htm" title="动物疫苗的发展现状论文（动物疫苗市场分析）">动物疫苗的发展现状论文（动物疫苗市场分析）</a></li>
+                        <li class="py-2"><a href="/news/article-77245.htm" title="合肥有领养猫的地方吗（合肥猫猫领养网站）">合肥有领养猫的地方吗（合肥猫猫领养网站）</a></li>
                     </ul>
     </div>
 </div>
@@ -158,7 +159,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
