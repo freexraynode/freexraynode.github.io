@@ -1,0 +1,377 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freexraynode.github.io/news/article-84914.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>进程内优雅管理多个服务</title>
+        <meta name="description" content="前言 在 go-zero 社区里，经常会有同学问，把API gateway 和RPC service 放在同一个进程内可不可以？怎么弄？有时也会有同学把对外服务和消费队列放在一个进程内。咱们姑且不说此" />
+        <link rel="icon" href="/assets/website/img/freexraynode/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free Xray Node机场节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freexraynode.github.io/news/article-84914.htm" />
+    <meta property="og:site_name" content="Free Xray Node机场节点官网" />
+    <meta property="og:title" content="进程内优雅管理多个服务" />
+    <meta property="og:image" content="https://freexraynode.github.io/uploads/20240820-3/e56dbe76d02ab04e238bceaf701f1135.webp" />
+        <meta property="og:release_date" content="2025-03-30T09:36:42" />
+    <meta property="og:updated_time" content="2025-03-30T09:36:42" />
+        <meta property="og:description" content="前言 在 go-zero 社区里，经常会有同学问，把API gateway 和RPC service 放在同一个进程内可不可以？怎么弄？有时也会有同学把对外服务和消费队列放在一个进程内。咱们姑且不说此" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="进程内优雅管理多个服务">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="/assets/website/css/freexraynode/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-768TFY4KSC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-768TFY4KSC');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                <a class="navbar-brand" href="/">
+                                <span>Free Xray Node</span>
+                                </a>
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h1 class="inner-text-title font-weight-bold mb-sm-3 mb-2">进程内优雅管理多个服务</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- middle section -->
+    <section class="w3l-servicesblock py-md-5 py-4">
+        <div class="container pb-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="XRayNode每日订阅站" data-url="https://xraynode.github.io">
+                  				  				  				<h2 id="前言">前言</h2> <p>在 go-zero 社区里，经常会有同学问，把<code>API gateway</code> 和<code>RPC service</code> 放在同一个进程内可不可以？怎么弄？有时也会有同学把对外服务和消费队列放在一个进程内。咱们姑且不说此种用法合理与否，因为各个公司的业务场景和开发模式的差异，我们就只来看看此类问题怎么解比较优雅。</p> <h2 id="问题举例">问题举例</h2> <p>我们用两个<code>HTTP</code> 服务来举例，我们有这样两个服务，需要启动在一个进程内的两个不同端口。代码如下：</p> <pre><code class="language-go">package main  import (   "fmt"   "net/http" )  func morning(w http.ResponseWriter, req *http.Request) {   fmt.Fprintln(w, "morning!") }  func evening(w http.ResponseWriter, req *http.Request) {   fmt.Fprintln(w, "evening!") }  type Morning struct{}  func (m Morning) Start() {   http.HandleFunc("/morning", morning)   http.ListenAndServe("localhost:8080", nil) }  func (m Morning) Stop() {   fmt.Println("Stop morning service...") }  type Evening struct{}  func (e Evening) Start() {   http.HandleFunc("/evening", evening)   http.ListenAndServe("localhost:8081", nil) }  func (e Evening) Stop() {   fmt.Println("Stop evening service...") }  func main() {   // todo: start both services here }</code></pre> <p>代码是足够简单的，就是有请求<code>morning</code> 接口，服务返回<code>morning!</code>，请求<code>evening</code> 接口，服务返回<code>evening</code> 。让我们来尝试实现一下～</p> <h2 id="第一次尝试">第一次尝试</h2> <p>启动两个服务，不就是把两个服务在<code>main</code> 里都启动一下吗？我们来试试</p> <pre><code class="language-go">func main() {   var morning Morning   morning.Start()   defer morning.Stop()    var evening Evening   evening.Start()   defer evening.Stop() }</code></pre> <p>启动完，我们用<code>curl</code> 来验证一下</p> <pre><code class="language-shell">$ curl -i http://localhost:8080/morning HTTP/1.1 200 OK Date: Mon, 18 Apr 2022 02:10:34 GMT Content-Length: 9 Content-Type: text/plain; charset=utf-8  morning! $ curl -i http://localhost:8081/evening curl: (7) Failed to connect to localhost port 8081 after 4 ms: Connection refused</code></pre> <p>为什么只有<code>morning</code> 成功，而<code>evening</code> 无法请求呢？</p> <p>我们在<code>main</code> 里面加上打印语句试试</p> <pre><code class="language-go">func main() {   fmt.Println("Start morning service...")   var morning Morning   morning.Start()   defer morning.Stop()    fmt.Println("Start evening service...")   var evening Evening   evening.Start()   defer evening.Stop() }</code></pre> <p>重新启动</p> <pre><code class="language-shell">$ go run main.go Start morning service...</code></pre> <p>发现只打印了<code>Start morning service…</code>，原来<code>evening</code> 服务压根没有启动。究其原因，是因为<code>morning.Start()</code> 阻塞了当前<code>goroutine</code>，后续代码就得不到执行了。</p> <h2 id="第二次尝试">第二次尝试</h2> <p>这时，<code>WaitGroup</code> 就可以派上用场了。<code>WaitGroup</code> 顾名思义，就是用来<code>wait</code> 一组操作，等待它们通知可以继续。让我们来尝试一下。</p> <pre><code class="language-go">func main() {   var wg sync.WaitGroup   wg.Add(2)    go func() {     defer wg.Done()     fmt.Println("Start morning service...")     var morning Morning     defer morning.Stop()     morning.Start()   }()    go func() {     defer wg.Done()     fmt.Println("Start evening service...")     var evening Evening     defer evening.Stop()     evening.Start()   }()    wg.Wait() }</code></pre> <p>启动试试</p> <pre><code class="language-shell">$ go run main.go Start evening service... Start morning service...</code></pre> <p>好，两个服务都起来了，我们用<code>curl</code> 验证一下</p> <pre><code class="language-shell">$ curl -i http://localhost:8080/morning HTTP/1.1 200 OK Date: Mon, 18 Apr 2022 02:28:33 GMT Content-Length: 9 Content-Type: text/plain; charset=utf-8  morning! $ curl -i http://localhost:8081/evening HTTP/1.1 200 OK Date: Mon, 18 Apr 2022 02:28:36 GMT Content-Length: 9 Content-Type: text/plain; charset=utf-8  evening!</code></pre> <p>确实都可以了，我们看到我们使用<code>WaitGroup</code> 的流程是</p> <ol> <li>记得我们有几个需要<code>wait</code> 的服务</li> <li>一个一个添加服务</li> <li>等待所有服务结束</li> </ol> <p>让我们看看<code>go-zero</code> 是怎么做的~</p> <h2 id="第三次尝试">第三次尝试</h2> <p>在<code>go-zero</code> 里，我们提供了一个<code>ServiceGroup</code> 工具，方便管理多个服务的启动和停止。让我们看看带入我们的场景是怎么做的。</p> <pre><code class="language-go">import "github.com/zeromicro/go-zero/core/service"  // more code  func main() {   group := service.NewServiceGroup()   defer group.Stop()   group.Add(Morning{})   group.Add(Evening{})   group.Start() }</code></pre> <p>可以看到，代码的可读性好了很多，并且我们也不会不小心算错该给<code>WaitGroup</code> 加几了。并且<code>ServiceGroup</code> 还保证了后启动的服务先<code>Stop</code>，跟<code>defer</code> 效果一致，这样的行为便于资源的清理。</p> <p><code>ServiceGroup</code> 不光只是管理了每个服务的<code>Start/Stop</code>，同时也提供了<code>graceful shutdown</code>，当收到<code>SIGTERM</code> 信号的时候会主动调用每个服务的<code>Stop</code>  方法，对于<code>HTTP</code> 服务，可以通过<code>server.Shutdown</code> 来优雅退出，对于<code>gRPC</code> 服务来说，可以通过<code>server.GracefulStop()</code> 来优雅退出。</p> <h2 id="总结">总结</h2> <p><code>ServiceGroup</code> 的实现其实也是比较简单的，代码一共82行。</p> <pre><code class="language-shell">$ cloc core/service/servicegroup.go ------------------------------------------------------------------ Language        files          blank        comment           code ------------------------------------------------------------------ Go                 1             22             14             82 ------------------------------------------------------------------</code></pre> <p>虽然代码短小精悍，但是在<code>go-zero</code> 里却每个服务（Restful, RPC, MQ）基本都是通过<code>ServiceGroup</code> 来管理的，可以说非常方便，代码值得一读。</p> <h2 id="项目地址">项目地址</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/zeromicro/go-zero"  target="_blank" rel="nofollow">https://github.com/zeromicro/go-zero</a></p> <p>欢迎使用<code>go-zero</code> 并<strong>star</strong> 支持我们！</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-84233.htm">动物打疫苗去哪里打针（动物打疫苗去哪里打针好）</a></p>
+                                        <p>下一个：<a href="/news/article-84915.htm">三国杀限定皮肤特效（三国杀限定皮肤册）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-7-free-winxray-node.htm" title="「2月7日」最高速度19.6M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「2月7日」最高速度19.6M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-winxray-node-github.htm" title="「3月18日」最高速度21.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「3月18日」最高速度21.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-51202.htm" title="真正的宠物狗免费领养网站是什么（宠物狗免费领养）">真正的宠物狗免费领养网站是什么（宠物狗免费领养）</a></li>
+                        <li class="py-2"><a href="/news/article-47167.htm" title="广州领养宠物猫的地方（广州哪里领养猫咪）">广州领养宠物猫的地方（广州哪里领养猫咪）</a></li>
+                        <li class="py-2"><a href="/news/article-63003.htm" title="动物医学社会实践日记20篇怎么写（动物医院社会实践报告）">动物医学社会实践日记20篇怎么写（动物医院社会实践报告）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-20-today-winxray-node.htm" title="「1月20日」最高速度20.4M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「1月20日」最高速度20.4M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-46645.htm" title="动物疫苗查询真伪网站查询入口（动物疫苗批号查询网）">动物疫苗查询真伪网站查询入口（动物疫苗批号查询网）</a></li>
+                        <li class="py-2"><a href="/news/article-82775.htm" title="被猫抓伤破皮要打针吗超过24小时（被猫抓伤几小时内打针有效）">被猫抓伤破皮要打针吗超过24小时（被猫抓伤几小时内打针有效）</a></li>
+                        <li class="py-2"><a href="/news/article-64826.htm" title="北京芭比堂动物医院电话号码（芭比堂动物医院有限责任公司）">北京芭比堂动物医院电话号码（芭比堂动物医院有限责任公司）</a></li>
+                        <li class="py-2"><a href="/news/article-40212.htm" title="动物防疫站周六日上班吗现在（动物防疫站几点下班）">动物防疫站周六日上班吗现在（动物防疫站几点下班）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //middle section -->
+        <!-- footer -->
+    <footer class="w3l-footer-22 position-relative mt-5 pt-5">
+        <!-- copyright -->
+        <div class="copyright-footer text-center">
+            <div class="container">
+                <div class="columns">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>Free Xray Node机场节点官网 版权所有 Powered by WordPress</p>
+                </div>
+            </div>
+        </div>
+        <!-- //copyright -->
+    </footer>
+    <!-- //footer -->
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- //move top -->
+    <!-- common jquery plugin -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery-3.5.1.min.js"></script>
+    <!-- //common jquery plugin -->
+    <!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/freexraynode/theme-change.js"></script>
+    <script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function() {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- magnific popup -->
+    <script src="/assets/website/js/frontend/freexraynode/jquery.magnific-popup.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+        $('.popup-with-move-anim').magnificPopup({
+            type: 'inline',
+
+            fixedContentPos: false,
+            fixedBgPos: true,
+
+            overflowY: 'auto',
+
+            closeBtnInside: true,
+            preloader: false,
+
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-slide-bottom'
+        });
+    });
+    </script>
+    <!-- //magnific popup -->
+    <!-- MENU-JS -->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- for testimonials carousel -->
+    <script src="/assets/website/js/frontend/freexraynode/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#owl-demo1").owlCarousel({
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: true,
+                    loop: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //for testimonials carousel -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="/assets/website/js/frontend/freexraynode/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+    <!-- //Js scripts -->
+</body>
+
+</html>
