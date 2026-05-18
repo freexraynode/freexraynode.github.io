@@ -349,19 +349,9 @@ Clash本身不会，但所用节点若不可信，则存在风险。建议选择
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何在 Sing-box 中设置多个 outbound 实现策略路由？</h5></div>
+    <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些优势？</h5></div>
     <div class="panel-body">
-        在 sing-box 的配置中定义多个 outbound 对象并为 routing 模块配置 rules，将不同目的地或应用流量指向对应 outbound，从而实现分流、负载均衡或故障转移等复杂路由策略。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 节点如何正确配置证书？</h5></div>
-    <div class="panel-body">
-        TLS 证书必须有效且域名匹配，否则客户端无法建立连接。建议使用受信任证书并确保证书链完整，可保证节点安全和长期可用性，同时提高伪装效果和抗封锁能力。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 的证书配置错误会导致什么问题？</h5></div>
-    <div class="panel-body">
-        如果 TLS 证书无效或域名不匹配，Trojan 客户端将无法建立安全连接，导致节点无法使用。需要确保证书有效、域名正确，才能保证正常访问。<hr />    </div>
+        多路复用允许多个请求共享同一 QUIC 连接，减少握手次数和延迟。高并发情况下可以提升吞吐量和稳定性，特别适合短连接频繁请求的应用，如游戏或即时通讯。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>为什么某些网站在通过代理后登录会频繁要求二次验证？</h5></div>
@@ -369,14 +359,24 @@ Clash本身不会，但所用节点若不可信，则存在风险。建议选择
         代理会改变访问 IP 与地理位置，目标站点可能检测到异常登录并触发验证码或二次验证。建议对常用账户使用白名单 IP 或在代理配置中对特定站点设置直连来避免频繁验证。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess AEAD 加密在高封锁网络中有何优势？</h5></div>
+    <div class="panel-body">
+        AEAD 加密能防止流量被篡改或重放，并隐藏流量特征。在高封锁网络中，使用 AEAD 可以提高节点稳定性和长期可用性，同时确保数据安全和隐蔽性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan 的证书配置错误会导致什么问题？</h5></div>
+    <div class="panel-body">
+        如果 TLS 证书无效或域名不匹配，Trojan 客户端将无法建立安全连接，导致节点无法使用。需要确保证书有效、域名正确，才能保证正常访问。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>VLESS + Reality 模式如何隐藏流量特征？</h5></div>
     <div class="panel-body">
         Reality 模式通过伪装握手和真实网站特征，使流量难以被 DPI 检测。结合策略组使用，可有效隐藏节点通信特征，同时保持安全和高速传输，适合高封锁环境。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的 PAC 模式适合什么场景？</h5></div>
+    <div class="panel-heading"><h5>Trojan 节点如何正确配置证书？</h5></div>
     <div class="panel-body">
-        PAC 模式通过 JavaScript 文件动态判断哪些流量走代理，哪些直连。适合访问国内外混合网站环境，用户无需手动切换节点即可根据规则自动分流。<hr />    </div>
+        TLS 证书必须有效且域名匹配，否则客户端无法建立连接。建议使用受信任证书并确保证书链完整，可保证节点安全和长期可用性，同时提高伪装效果和抗封锁能力。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray QUIC 模式适合哪些网络环境？</h5></div>
@@ -384,19 +384,19 @@ Clash本身不会，但所用节点若不可信，则存在风险。建议选择
         QUIC 基于 UDP 协议，支持多路复用和零握手，适合高丢包和不稳定网络环境。可提升视频、游戏和即时通讯流量的稳定性和访问速度，提高网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hysteria2 的多路复用功能有哪些优势？</h5></div>
+    <div class="panel-heading"><h5>如何在 Sing-box 中设置多个 outbound 实现策略路由？</h5></div>
     <div class="panel-body">
-        多路复用允许多个请求共享同一 QUIC 连接，减少握手次数和延迟。高并发情况下可以提升吞吐量和稳定性，特别适合短连接频繁请求的应用，如游戏或即时通讯。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess AEAD 加密在高封锁网络中有何优势？</h5></div>
-    <div class="panel-body">
-        AEAD 加密能防止流量被篡改或重放，并隐藏流量特征。在高封锁网络中，使用 AEAD 可以提高节点稳定性和长期可用性，同时确保数据安全和隐蔽性。<hr />    </div>
+        在 sing-box 的配置中定义多个 outbound 对象并为 routing 模块配置 rules，将不同目的地或应用流量指向对应 outbound，从而实现分流、负载均衡或故障转移等复杂路由策略。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VLess 为什么被认为是未来趋势？</h5></div>
     <div class="panel-body">
-        VLess 去掉了内置加密层，改为依赖外部 TLS 进行安全通信，这使其更轻量化且更灵活。它能与 Hysteria、Reality 等现代传输方式结合使用，适应性更强，是取代 Vmess 的新标准。    </div>
+        VLess 去掉了内置加密层，改为依赖外部 TLS 进行安全通信，这使其更轻量化且更灵活。它能与 Hysteria、Reality 等现代传输方式结合使用，适应性更强，是取代 Vmess 的新标准。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的 PAC 模式适合什么场景？</h5></div>
+    <div class="panel-body">
+        PAC 模式通过 JavaScript 文件动态判断哪些流量走代理，哪些直连。适合访问国内外混合网站环境，用户无需手动切换节点即可根据规则自动分流。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -425,16 +425,16 @@ Clash本身不会，但所用节点若不可信，则存在风险。建议选择
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-5-3-winxray-github.htm" title="「5月3日」最高速度19.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「5月3日」最高速度19.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-23-free-node-subscribe-links.htm" title="「4月23日」最高速度18.5M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月23日」最高速度18.5M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-16-node-share.htm" title="「4月16日」最高速度22.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月16日」最高速度22.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-4-27-free-subscribe-node.htm" title="「4月27日」最高速度23M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月27日」最高速度23M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-28-today-winxray-node.htm" title="「4月28日」最高速度18M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月28日」最高速度18M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-24-winxray-windows.htm" title="「4月24日」最高速度20.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月24日」最高速度20.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-10-winxray-github.htm" title="「4月10日」最高速度22.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月10日」最高速度22.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-21-free-high-speed-nodes.htm" title="「4月21日」最高速度18.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月21日」最高速度18.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-20-winxray-windows.htm" title="「4月20日」最高速度19.5M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月20日」最高速度19.5M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-11-free-node-subscribe-links.htm" title="「5月11日」最高速度19.6M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「5月11日」最高速度19.6M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-4-13-winxray-github.htm" title="「4月13日」最高速度20.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月13日」最高速度20.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-2-free-subscribe-node.htm" title="「5月2日」最高速度21.8M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「5月2日」最高速度21.8M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-1-today-winxray-node.htm" title="「5月1日」最高速度20.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「5月1日」最高速度20.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-4-node-share.htm" title="「5月4日」最高速度20.4M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「5月4日」最高速度20.4M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-10-winxray-node-share.htm" title="「5月10日」最高速度20.9M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「5月10日」最高速度20.9M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-26-today-winxray-node.htm" title="「4月26日」最高速度21.3M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月26日」最高速度21.3M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-12-free-node-subscribe.htm" title="「4月12日」最高速度19.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「4月12日」最高速度19.1M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-3-winxray-github.htm" title="「5月3日」最高速度19.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接">「5月3日」最高速度19.7M/S，2025年Free Xray Node每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -446,10 +446,10 @@ Clash本身不会，但所用节点若不可信，则存在风险。建议选择
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
+                <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>
